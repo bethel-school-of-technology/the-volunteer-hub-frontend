@@ -1,16 +1,16 @@
-<div>
-  <app-homepage></app-homepage>
-</div>
+
 
 <div class="title">
   <app-sign-up-component></app-sign-up-component>
+  <app-homepage></app-homepage>
+  <div style="text-align:center">
+    <div>
+        <app-posts
+          [dataPath]="staticPath">
+        </app-posts>
+    </div>
+  </div>
  </div>
 
- <div style="text-align:center">
-  <div>
-      <app-posts
-        [dataPath]="staticPath">
-      </app-posts>
-  </div>
-</div>
+
 <router-outlet></router-outlet>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up-component',
@@ -18,13 +18,40 @@ export class SignUpComponentComponent implements OnInit {
       password: ''
     })
 
-    //This shows all live changes to console
-    this.myForm.valueChanges.subscribe(console.log);
+
+    this.myForm = this.fb.group({
+      email: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      username: ['', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(10)
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
+      ]]
+    })
   } 
 
+  //Regex error handling
+  get email() {
+    return this.myForm.get('email');
+  }
+
+  get password() {
+    return this.myForm.get('password');
+  }
+
+  get username() {
+    return this.myForm.get('username');
+  }
+
   //Test submit 
-  onSubmit(data) {
-    console.log(data);
+  onSubmit(data:any):void {
+    console.log(data.value);
   }
 
 }
