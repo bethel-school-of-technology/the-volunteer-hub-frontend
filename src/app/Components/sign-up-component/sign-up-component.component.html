@@ -1,0 +1,23 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <!-- This shows a live preview of what is being typed and what will be sent to the db -->
+    Value: {{ myForm.value | json }}
+    <hr>
+
+    <mat-form-field>
+        <input matInput placeholder='email' formControlName='email' />
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder='username' formControlName='username' />
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder='password' formControlName='password' />
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary" type="submit">
+        Submit
+    </button>
+
+
+</form>
