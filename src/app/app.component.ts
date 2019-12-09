@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'VolunteerHub';
+  staticPath: string = 'http://localhost:3001/staticposts';
 }
