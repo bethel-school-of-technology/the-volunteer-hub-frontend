@@ -61,6 +61,7 @@
 .introBody {
     width: auto;
     height: 87vh;
+    background-color: primary;
     display: flex;
     justify-content: center;
     align-items: center;
