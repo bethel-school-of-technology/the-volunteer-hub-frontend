@@ -9,5 +9,5 @@ export class AppComponent {
   title = 'VolunteerHub';
   staticPath: string = 'http://localhost:3001/staticposts';
 
-  signUpPath = 'http://localhost:3001/users/signup';
+  signUpPath: string = 'http://localhost:3001/users/signup';
 }

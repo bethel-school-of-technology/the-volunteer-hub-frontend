@@ -19,8 +19,16 @@ export class SignUpComponentComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   // User signup and storing the user in MongoDB
-  signup(user: User): Observable<User> {
-    return this.http.post<User>(this.signupPath, user);
+  signup(): Observable<User> {
+    const result: User = Object.assign({}, this.myForm.value);
+    console.log(result)
+    console.log(this.myForm.value);
+    return this.http.post<User>(this.signupPath, result);
+    // user.email = this.myForm.value.email;
+    // user.username = this.myForm.value.username;
+    // user.password = this.myForm.value.password;
+    // console.log(user);
+    // return this.http.post<User>(this.signupPath, user);
   }
 
 
@@ -29,8 +37,8 @@ export class SignUpComponentComponent implements OnInit {
 
 
     this.myForm = this.fb.group({
-      email: '',
       username: '',
+      email: '',
       password: ''
     });
 
@@ -68,9 +76,5 @@ export class SignUpComponentComponent implements OnInit {
     return this.myForm.get('username');
   }
 
-  // Test submit
-  onSubmit(data: any): void {
-    console.log(data.value);
-  }
 
 }
