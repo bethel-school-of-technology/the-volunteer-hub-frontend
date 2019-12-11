@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'VolunteerHub';
   staticPath: string = 'http://localhost:3001/staticposts';
+
+  signUpPath: string = 'http://localhost:3001/users/signup';
 }
