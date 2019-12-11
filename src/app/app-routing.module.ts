@@ -5,7 +5,6 @@ import { HomepageComponent } from './Components/homepage/homepage.component';
 
 
 const routes: Routes = [
-  { path: 'signup', component: SignUpComponentComponent }
 ];
 
 @NgModule({
@@ -14,4 +13,3 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const routingComponents = [SignUpComponentComponent, HomepageComponent]

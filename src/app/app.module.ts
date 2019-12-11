@@ -8,6 +8,7 @@ import { PostsComponent } from './Components/posts/posts.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +19,6 @@ import { MatChipsModule } from '@angular/material/chips';
   declarations: [
     AppComponent,
     PostsComponent,
-    routingComponents
   ],
   imports: [
     BrowserModule,
@@ -34,5 +34,6 @@ import { MatChipsModule } from '@angular/material/chips';
   ],
   providers: [],
   bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
