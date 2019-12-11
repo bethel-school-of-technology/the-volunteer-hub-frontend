@@ -14,11 +14,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import { LoginuserComponent } from './loginuser/loginuser.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PostsComponent,
+    routingComponents,
+    LoginuserComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,6 @@ import { MatChipsModule } from '@angular/material/chips';
     MatChipsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
   bootstrap: [AppComponent],
 })
 export class AppModule { }
