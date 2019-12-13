@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SignupService } from '../../Services/signup.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up-component',
@@ -14,15 +15,17 @@ import { SignupService } from '../../Services/signup.service';
 export class SignUpComponentComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor(private http: HttpClient, private _signUpService : SignupService) { }
+  constructor(private http: HttpClient, private _signUpService : SignupService, private router: Router) { }
 
 
   signup() {
     const result: User = Object.assign({}, this.myForm.value);
     console.log(result);
-
     this._signUpService.signup(result).subscribe(
-      data => console.log('Successs!', data),
+      data => {
+        this.router.navigate(['/login']);
+        console.log('Successs!', data)
+      },
       error => console.error('Error!', error)
     )
   }
