@@ -28,14 +28,11 @@
     background-color: blue;
 }
 
-.logoImage {
 /* .logoImage {
     display: block;
     height: 13vh;
-}
 } */
 
-.h_links {
 /* .h_links {
     background-color: blue;
     width: 35%;
@@ -43,12 +40,10 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
 } */
 
 /* Right side of header */
 
-.indv_h_link {
 /* .indv_h_link {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
@@ -59,7 +54,6 @@
     background-color:#f9f9f9;
     border-radius: 6px;
     padding:6px 24px;
-}
 } */
 
 /* BODY */
