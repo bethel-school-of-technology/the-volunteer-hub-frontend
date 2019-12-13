@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { LoginuserComponent } from './loginuser/loginuser.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
 
 
 
@@ -24,6 +25,7 @@ import { LoginuserComponent } from './loginuser/loginuser.component';
     PostsComponent,
     routingComponents,
     LoginuserComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
