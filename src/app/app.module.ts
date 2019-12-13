@@ -8,17 +8,24 @@ import { PostsComponent } from './Components/posts/posts.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import { LoginuserComponent } from './loginuser/loginuser.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PostsComponent,
-    routingComponents
+    routingComponents,
+    LoginuserComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +40,6 @@ import { MatChipsModule } from '@angular/material/chips';
     MatChipsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
