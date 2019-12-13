@@ -13,12 +13,25 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+<<<<<<< Updated upstream
+=======
+import { LoginuserComponent } from './Components/loginuser/loginuser.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+
+
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
     AppComponent,
     PostsComponent,
+<<<<<<< Updated upstream
     routingComponents
+=======
+    routingComponents,
+    LoginuserComponent,
+    NavbarComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,
