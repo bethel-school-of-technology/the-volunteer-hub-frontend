@@ -20,7 +20,7 @@ return this.currentUserSubject.value;
 }
  //should it be /login instead of auth/login?
 login(username: string, password: string) {
-return this.http.post<any>(`auth/login`, { username, password })
+return this.http.post<any>(`http://localhost:3001/users/login`, { username, password })
 .pipe(map(user => {
 if (user && user.token) {
 // store user details in local storage to keep user logged in
