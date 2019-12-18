@@ -1,9 +1,17 @@
-  <!-- Right below the header -->
-  <section class="introBody">
-    <!-- Top part, slogan -->
-    <div class="slogan">
-        Where Volunteering Begins
-    </div>
+<!-- Right below the header -->
+<section class="introBody">
+  <!-- Top part, slogan -->
+  <div class="slogan">
+    Where Volunteering Begins
+  </div>
+</section>
 
-  </section>
-]
+<section>
+  <p>Search by State for Organizations near you!</p>
+  <form [formGroup]='searchForm' (ngSubmit)='search()'>
+    <mat-form-field>
+      <input matInput placeholder='Search by State!' formControlName='state' />
+    </mat-form-field>
+    <button mat-raised-button [disabled]='searchForm.invalid' type='submit'>Search</button>
+  </form>
+</section>
