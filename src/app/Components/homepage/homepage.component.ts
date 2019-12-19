@@ -39,6 +39,7 @@ export class HomepageComponent implements OnInit {
     this.http.get<Organizations>(`${this._url}${correctedState}`)
     .subscribe(organization => {
       this.organization = organization;
+      this.router.navigate(['/organizations', correctedState]);
       console.log(JSON.stringify(this.organization));
     })
   }
