@@ -16,6 +16,7 @@ import { MatChipsModule } from "@angular/material/chips";
 
 import { LoginuserComponent } from "./Components/loginuser/loginuser.component";
 import { NavbarComponent } from "./Components/navbar/navbar.component";
+import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NavbarComponent } from "./Components/navbar/navbar.component";
     PostsComponent,
     routingComponents,
     LoginuserComponent,
-    NavbarComponent
+    NavbarComponent,
+    DetailedOrgComponent
   ],
 
   imports: [
