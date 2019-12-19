@@ -55,7 +55,7 @@ export class LoginuserComponent implements OnInit {
         },
         error => {
           alert("Error");
-          console.log(this.fval.username.value);
+          console.log(this.fval.username.value, error);
           this.loading = false;
         }
       );

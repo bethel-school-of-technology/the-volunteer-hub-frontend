@@ -16,7 +16,11 @@ import { MatChipsModule } from "@angular/material/chips";
 
 import { LoginuserComponent } from "./Components/loginuser/loginuser.component";
 import { NavbarComponent } from "./Components/navbar/navbar.component";
+<<<<<<< Updated upstream
 import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
+=======
+import { ProfileComponent } from './Components/profile/profile.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.com
     routingComponents,
     LoginuserComponent,
     NavbarComponent,
+<<<<<<< Updated upstream
     DetailedOrgComponent
+=======
+    ProfileComponent
+>>>>>>> Stashed changes
   ],
 
   imports: [
