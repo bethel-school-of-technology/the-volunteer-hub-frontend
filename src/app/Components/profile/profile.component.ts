@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../../model/user';
 import { Organizations } from '../../model/organizations';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

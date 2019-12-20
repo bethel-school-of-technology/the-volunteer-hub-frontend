@@ -13,14 +13,17 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { LoginuserComponent } from "./Components/loginuser/loginuser.component";
 import { NavbarComponent } from "./Components/navbar/navbar.component";
-<<<<<<< Updated upstream
 import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
-=======
 import { ProfileComponent } from './Components/profile/profile.component';
->>>>>>> Stashed changes
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
+
 
 @NgModule({
   declarations: [
@@ -29,11 +32,8 @@ import { ProfileComponent } from './Components/profile/profile.component';
     routingComponents,
     LoginuserComponent,
     NavbarComponent,
-<<<<<<< Updated upstream
-    DetailedOrgComponent
-=======
+    DetailedOrgComponent,
     ProfileComponent
->>>>>>> Stashed changes
   ],
 
   imports: [
@@ -42,6 +42,12 @@ import { ProfileComponent } from './Components/profile/profile.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:4200']
+      }
+    }),
     MatInputModule,
     MatSelectModule,
     MatButtonModule,

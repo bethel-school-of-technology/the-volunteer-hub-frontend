@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem("currentUser"))
+      JSON.parse(localStorage.getItem('currentUser'))
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -29,7 +29,7 @@ export class AuthenticationService {
         map(user => {
           if (user && user.token) {
             // store user details in local storage to keep user logged in
-            localStorage.setItem("currentUser", JSON.stringify(user.result));
+            localStorage.setItem('currentUser', JSON.stringify(user.result));
             this.currentUserSubject.next(user);
           }
 
@@ -40,7 +40,7 @@ export class AuthenticationService {
 
   logout() {
     // remove user data from local storage for log out
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 
