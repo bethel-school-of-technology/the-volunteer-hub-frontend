@@ -20,10 +20,6 @@ import { NavbarComponent } from "./Components/navbar/navbar.component";
 import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
-
 
 @NgModule({
   declarations: [
@@ -42,12 +38,6 @@ export function tokenGetter() {
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: ['localhost:4200']
-      }
-    }),
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
