@@ -4,13 +4,14 @@ import { SignUpComponentComponent } from './Components/sign-up-component/sign-up
 import { HomepageComponent } from './Components/homepage/homepage.component';
 import { OrganizationsComponent } from './Components/organizations/organizations.component';
 import { LoginuserComponent } from './Components/loginuser/loginuser.component';
-
+import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
 
 
 const routes: Routes = [
   { path: '',  component: HomepageComponent},
   { path: 'signup', component: SignUpComponentComponent },
   { path: 'organizations', component: OrganizationsComponent },
+  { path: 'organizations/:state', component: DetailedOrgComponent },
   { path: 'login', component: LoginuserComponent }
 ];
 
@@ -21,4 +22,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 
-export const routingComponents = [SignUpComponentComponent, HomepageComponent, OrganizationsComponent, LoginuserComponent];
+export const routingComponents = [SignUpComponentComponent, HomepageComponent, OrganizationsComponent, DetailedOrgComponent, LoginuserComponent];
