@@ -22,7 +22,7 @@ export class HomepageComponent implements OnInit {
     })
   }
 
-  //access form fields
+  // access form fields
   get getFormValues() {
     return this.searchForm.controls;
   }
@@ -32,8 +32,8 @@ export class HomepageComponent implements OnInit {
       return;
     }
 
-    let searchedState = this.getFormValues.state.value
-    let correctedState = searchedState.charAt(0).toUpperCase() + searchedState.substring(1);
+    const searchedState = this.getFormValues.state.value
+    const correctedState = searchedState.charAt(0).toUpperCase() + searchedState.substring(1);
     console.log(correctedState);
 
     this.http.get<Organizations>(`${this._url}${correctedState}`)

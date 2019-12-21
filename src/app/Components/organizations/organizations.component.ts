@@ -16,7 +16,7 @@ export class OrganizationsComponent implements OnInit {
 
   ngOnInit() {
     this._http.get<Organizations[]>(this._url).subscribe(organization => {
-      this.organization = organization
+      this.organization = organization;
     });
   }
 

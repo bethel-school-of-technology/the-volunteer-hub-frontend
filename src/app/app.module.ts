@@ -13,10 +13,14 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { LoginuserComponent } from "./Components/loginuser/loginuser.component";
 import { NavbarComponent } from "./Components/navbar/navbar.component";
 import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
+import { ProfileComponent } from './Components/profile/profile.component';
+import { ResolverService } from './Services/resolver.service';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,8 @@ import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.com
     routingComponents,
     LoginuserComponent,
     NavbarComponent,
-    DetailedOrgComponent
+    DetailedOrgComponent,
+    ProfileComponent
   ],
 
   imports: [
@@ -40,7 +45,7 @@ import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.com
     MatCheckboxModule,
     MatChipsModule
   ],
-  providers: [],
+  providers: [ResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
