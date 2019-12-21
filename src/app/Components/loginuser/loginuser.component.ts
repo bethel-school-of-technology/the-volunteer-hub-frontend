@@ -51,15 +51,15 @@ export class LoginuserComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          //create cookie
-          document.cookie = `token=${data.token}`
+          // create cookie
+          document.cookie = `token=${data.token}`;
           var cookies = document.cookie;
           console.log(cookies);
-          this.router.navigate(["/"]);
+          this.router.navigate(["/profile"]);
           console.log("login successful");
         },
         error => {
-          alert("Error");
+          alert('Username or password does not exist.');
           console.log(this.fval.username.value, error);
           this.loading = false;
         }

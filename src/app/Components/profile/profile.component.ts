@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../model/user';
 import { Organizations } from '../../model/organizations';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,22 +14,22 @@ import { Organizations } from '../../model/organizations';
 export class ProfileComponent implements OnInit {
 
   user: User;
-  orgs: Organizations[];
+  organization: Organizations[];
   private url = 'http://localhost:3001/users/profile';
 
   constructor(private http: HttpClient) { }
 
-  getUserInfo() {
-    return this.http.get<User>(this.url, { withCredentials: true }).subscribe(user => {
+  ngOnInit() {
+    this.http.get<User>(this.url, { withCredentials: true }).subscribe(user => {
       this.user = user;
       console.log(JSON.stringify(user), document.cookie);
     });
-  }
 
-  ngOnInit() {
-    this.getUserInfo();
+    this.http.get<Organizations[]>(this.url, { withCredentials: true }).subscribe(organization => {
+      this.organization = organization;
+      console.log(JSON.stringify(organization));
+    });
   }
-
 }
 
 

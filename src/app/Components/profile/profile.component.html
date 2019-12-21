@@ -1,1 +1,14 @@
-<h1>Welcome to the Volunteer Hub</h1>
+<h1>Welcome to the Volunteer Hub, {{user.username}}!</h1>
+<h2>Email: {{user.email}}</h2>
+<br>
+<h4>Your Organizations</h4>
+<div>
+    <ul *ngFor='let organization of organization'>
+        <li><h5>Outreach Name: {{organization.name}}</h5>
+        Location: {{organization.city}}, {{organization.state}}.<br>
+        Email: {{organization.email}}<br>
+        Phone Number: {{organization.phoneNumber}}</li>
+    </ul>
+</div>
+<h3>Create Organization Form</h3>
+<form [formGroup]="createOrgForm" (ngSubmit)
