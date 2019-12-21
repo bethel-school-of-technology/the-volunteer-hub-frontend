@@ -19,6 +19,7 @@ import { LoginuserComponent } from "./Components/loginuser/loginuser.component";
 import { NavbarComponent } from "./Components/navbar/navbar.component";
 import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { ResolverService } from './Services/resolver.service';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
     MatCheckboxModule,
     MatChipsModule
   ],
-  providers: [],
+  providers: [ResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
