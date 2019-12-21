@@ -7,7 +7,6 @@ import { User } from "../model/user";
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
-
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -43,5 +42,4 @@ export class AuthenticationService {
     localStorage.removeItem("currentUser");
     this.currentUserSubject.next(null);
   }
-
 }
