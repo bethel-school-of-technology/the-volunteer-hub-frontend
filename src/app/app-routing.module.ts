@@ -5,6 +5,9 @@ import { HomepageComponent } from './Components/homepage/homepage.component';
 import { OrganizationsComponent } from './Components/organizations/organizations.component';
 import { LoginuserComponent } from './Components/loginuser/loginuser.component';
 import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
+import { ProfileComponent } from './Components/profile/profile.component';
+import { ResolverService } from './Services/resolver.service';
+
 
 
 const routes: Routes = [
@@ -12,7 +15,9 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponentComponent },
   { path: 'organizations', component: OrganizationsComponent },
   { path: 'organizations/:state', component: DetailedOrgComponent },
-  { path: 'login', component: LoginuserComponent }
+  { path: 'login', component: LoginuserComponent },
+  { path: 'login', component: LoginuserComponent },
+  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService }}
 ];
 
 @NgModule({
