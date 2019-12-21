@@ -18,9 +18,9 @@ export class ProfileComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   getUserInfo() {
-    return this.http.get<User>(this.url).subscribe(user => {
+    return this.http.get<User>(this.url, { withCredentials: true }).subscribe(user => {
       this.user = user;
-      console.log(JSON.stringify(user));
+      console.log(JSON.stringify(user), document.cookie);
     });
   }
 

@@ -50,6 +50,11 @@ export class LoginuserComponent implements OnInit {
       .login(this.fval.username.value, this.fval.password.value)
       .subscribe(
         data => {
+          console.log(data);
+          //create cookie
+          document.cookie = `token=${data.token}`
+          var cookies = document.cookie;
+          console.log(cookies);
           this.router.navigate(["/"]);
           console.log("login successful");
         },
