@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@auth0/angular-jwt": "^3.0.1",
+    "angular-jwt": "^0.1.11",
+    "angular-local-storage": "^0.7.1",
     "body": "^5.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.7.13",
