@@ -24,18 +24,14 @@ export class ProfileComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-    private createOrganizationService: CreateOrganizationService) {
+    private createOrganizationService: CreateOrganizationService
+    ) {
     route.data.subscribe(data => {
       this.user = data['user']
     });
   }
 
   ngOnInit() {
-    // this.http.get<User>('http://localhost:3001/users/Userprofile', { withCredentials: true }).subscribe(user => {
-    //   this.user = user;
-    //   console.log(JSON.stringify(user), document.cookie);
-    // });
-
     this.http.get<Organizations[]>(this.url, { withCredentials: true }).subscribe(organization => {
       this.organization = organization;
       console.log(JSON.stringify(organization));
@@ -67,25 +63,18 @@ export class ProfileComponent implements OnInit {
 
   async orgUrl() {
     const result: Organizations = Object.assign({}, this.orgForm.value);
-    return this.createOrganizationService.createOrganization(result).subscribe();
+    return this.http.post<any>(this.createOrgUrl, result, { withCredentials: true }).subscribe();
   }
 
   createOrg() {
     this.orgUrl().then(
       newOrg => {
-        this.router.navigate(['/profile']);
+        location.reload();
         console.log('Your new organization has been posted.', newOrg);
       },
       err => console.log('Error!', err)
     );
   }
-
-  // createOrg() {
-  //   this.http.post<Organizations>(this.createOrgUrl, { withCredentials: true }).subscribe(newOrg => {
-  //     this.router.navigate(['/profile']);
-  //     console.log('Your new organization has been posted.', newOrg);
-  //   }, err => console.log(err));
-  // }
 }
 
 
