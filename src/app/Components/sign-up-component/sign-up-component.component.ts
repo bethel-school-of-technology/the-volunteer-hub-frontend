@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class SignUpComponentComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor(private http: HttpClient, private _signUpService : SignupService, private router: Router) { }
+  constructor(private http: HttpClient, private _signUpService: SignupService, private router: Router) { }
 
   ngOnInit() {
     this.myForm = new FormGroup({
@@ -35,18 +35,18 @@ export class SignUpComponentComponent implements OnInit {
     });
   }
 
-async routeURL() {
-  const result: User = Object.assign({}, this.myForm.value);
-  return this._signUpService.signup(result).subscribe();
-}
+  async routeURL() {
+    const result: User = Object.assign({}, this.myForm.value);
+    return this._signUpService.signup(result).subscribe();
+  }
 
-signup() {
-  this.routeURL().then(
-     data => {
-      this.router.navigate(['/login']);
-      console.log('Successs!', data)
-    },
-    error => console.error('Error!', error)     
-  )
-}
+  signup() {
+    this.routeURL().then(
+      data => {
+        this.router.navigate(['/login']);
+        console.log('Successs!', data);
+      },
+      error => console.error('Error!', error)
+    );
+  }
 }

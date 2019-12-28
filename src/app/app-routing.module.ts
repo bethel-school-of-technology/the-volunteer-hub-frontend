@@ -11,13 +11,13 @@ import { ResolverService } from './Services/resolver.service';
 
 
 const routes: Routes = [
-  { path: '',  component: HomepageComponent},
+  { path: '', component: HomepageComponent },
   { path: 'signup', component: SignUpComponentComponent },
   { path: 'organizations', component: OrganizationsComponent },
   { path: 'organizations/:state', component: DetailedOrgComponent },
   { path: 'login', component: LoginuserComponent },
   { path: 'login', component: LoginuserComponent },
-  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService }}
+  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } }
 ];
 
 @NgModule({
@@ -27,4 +27,10 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 
-export const routingComponents = [SignUpComponentComponent, HomepageComponent, OrganizationsComponent, DetailedOrgComponent, LoginuserComponent];
+export const routingComponents = [
+  SignUpComponentComponent,
+  HomepageComponent,
+  OrganizationsComponent,
+  DetailedOrgComponent,
+  LoginuserComponent,
+  ProfileComponent];
