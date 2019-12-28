@@ -10,7 +10,30 @@ import { User } from "../model/user";
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  isAuthenticated: boolean = false;
+  isAuthenticated: boolean = this.checkLogin();
+
+  checkLogin() {
+    function getCookie(token) {
+      var name = token + '=';
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i=0; i < ca.length; i++) {
+        var c = ca[i];
+        while(c.charAt(0) == ' '){
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return '';
+    }
+    if (getCookie('token')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   constructor(private http: HttpClient) {
     // this.currentUserSubject = new BehaviorSubject<User>(
