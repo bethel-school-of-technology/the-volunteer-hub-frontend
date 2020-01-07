@@ -5,4 +5,5 @@ export class Organizations {
     state: string;
     email: string;
     phoneNumber: string;
+    description: string;
 }

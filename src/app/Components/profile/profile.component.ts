@@ -4,7 +4,7 @@ import { User } from '../../model/user';
 import { Organizations } from '../../model/organizations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { CreateOrganizationService } from '../../Services/create-organization.service';
+
 
 
 @Component({
@@ -19,15 +19,15 @@ export class ProfileComponent implements OnInit {
   organization: Organizations[];
   private url = 'http://localhost:3001/users/userOrgs';
   private createOrgUrl = 'http://localhost:3001/users/createOrg';
+  private updateOrgUrl = 'http://localhost:3001/users/updateOrg/:orgId';
 
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-    private createOrganizationService: CreateOrganizationService
     ) {
     route.data.subscribe(data => {
-      this.user = data['user']
+      this.user = data['user'];
     });
   }
 
@@ -57,6 +57,9 @@ export class ProfileComponent implements OnInit {
         Validators.pattern('^[0-9]+$'),
         Validators.minLength(10),
         Validators.maxLength(10)
+      ]),
+      description: new FormControl('', [
+        Validators.required
       ])
     });
   }
