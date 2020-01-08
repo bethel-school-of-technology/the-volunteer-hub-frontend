@@ -27,6 +27,13 @@ export class HomepageComponent implements OnInit {
     return this.searchForm.controls;
   }
 
+  reRoute(org) {
+    var orgState = org.state;
+    console.log(orgState);
+    // const correction = orgState.charAt(0).toUpperCase() + orgState.substring(1);
+    // this.router.navigate(['/organizations', correction]);
+  }
+
   search(){
     if (this.searchForm.invalid) {
       return;
@@ -39,8 +46,9 @@ export class HomepageComponent implements OnInit {
     this.http.get<Organizations>(`${this._url}${correctedState}`)
     .subscribe(organization => {
       this.organization = organization;
-      this.router.navigate(['/organizations', correctedState]);
-      console.log(JSON.stringify(this.organization));
     })
   }
+
+  
+
 }
