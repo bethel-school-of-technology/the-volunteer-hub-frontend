@@ -20,6 +20,7 @@ import { NavbarComponent } from "./Components/navbar/navbar.component";
 import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ResolverService } from './Services/resolver.service';
+import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ResolverService } from './Services/resolver.service';
     LoginuserComponent,
     NavbarComponent,
     DetailedOrgComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditOrganizationComponent
   ],
 
   imports: [

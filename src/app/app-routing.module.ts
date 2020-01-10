@@ -7,6 +7,7 @@ import { LoginuserComponent } from './Components/loginuser/loginuser.component';
 import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ResolverService } from './Services/resolver.service';
+import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
 
 
 
@@ -16,8 +17,8 @@ const routes: Routes = [
   { path: 'organizations', component: OrganizationsComponent },
   { path: 'organizations/:state', component: DetailedOrgComponent },
   { path: 'login', component: LoginuserComponent },
-  { path: 'login', component: LoginuserComponent },
-  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } }
+  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } },
+  { path: 'organization/:id', component: EditOrganizationComponent }
 ];
 
 @NgModule({
@@ -33,4 +34,5 @@ export const routingComponents = [
   OrganizationsComponent,
   DetailedOrgComponent,
   LoginuserComponent,
-  ProfileComponent];
+  ProfileComponent,
+  EditOrganizationComponent];
