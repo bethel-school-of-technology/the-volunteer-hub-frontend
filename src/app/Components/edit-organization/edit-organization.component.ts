@@ -13,42 +13,48 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class EditOrganizationComponent implements OnInit {
 
-  private updateOrg = 'http://localhost:3001/users/updateOrg';
-  private orgUrl = 'http://localhost:3001/getOrgById';
+  updateOrg = 'http://localhost:3001/users/updateOrg';
+  orgUrl = 'http://localhost:3001/getOrgById';
   user: User;
   org: Organizations;
-  // tslint:disable-next-line: variable-name
+  // tslint:disable-next-line: variable-name,
   id: number;
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient
   ) {
-    route.data.subscribe(data => {
-      // tslint:disable-next-line: no-string-literal
-      this.user = data['user'];
-    });
+    // route.data.subscribe(data => {
+    //   // tslint:disable-next-line: no-string-literal
+    //   this.user = data['user'];
+    // });
   }
 
   // tslint:disable-next-line: variable-name
-  getOrgById(id: number): Observable<Organizations> {
-    const url = `${this.orgUrl}/${id}`;
-    return this.http.get<Organizations>(url)
-      .pipe(map(orgs => orgs[0]),
-        tap(o => {
-          const outcome = o ? `fetched` : `did not find`;
-          console.log(outcome);
-        }),
-      );
-  }
+  // getOrgById(id: number): Observable<Organizations> {
+  //   const url = `${this.orgUrl}/${id}`;
+  //   return this.http.get<Organizations>(url)
+  //     .pipe(map(orgs => orgs[0]),
+  //       tap(o => {
+  //         const outcome = o ? `fetched` : `did not find`;
+  //         console.log(outcome);
+  //       }),
+  //     );
+  // }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      // tslint:disable-next-line: no-string-literal
-      this.id = +params['id'];
-      this.getOrgById(this.id)
-      .subscribe(o => this.org = o);
+    let org = this.route.snapshot.paramMap.get('id');
+
+    this.http.get<Organizations>(`${this.orgUrl}/${org}`).subscribe(org => {
+      this.org = org;
+      console.log(org);
     });
+  //   this.route.params.subscribe(params => {
+  //     // tslint:disable-next-line: no-string-literal
+  //     this.id = +params['id'];
+  //     this.getOrgById(this.id)
+  //     .subscribe(o => this.org = o);
+  //   });
   }
 
 }
