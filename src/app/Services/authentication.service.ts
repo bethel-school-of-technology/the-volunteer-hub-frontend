@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-
 import { User } from "../model/user";
 
 @Injectable({ providedIn: "root" })
@@ -14,21 +13,21 @@ export class AuthenticationService {
 
   checkLogin() {
     function getCookie(token) {
-      var name = token + '=';
+      var name = token + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for (var i=0; i < ca.length; i++) {
+      var ca = decodedCookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while(c.charAt(0) == ' '){
+        while (c.charAt(0) == " ") {
           c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
           return c.substring(name.length, c.length);
         }
       }
-      return '';
+      return "";
     }
-    if (getCookie('token')) {
+    if (getCookie("token")) {
       return true;
     } else {
       return false;

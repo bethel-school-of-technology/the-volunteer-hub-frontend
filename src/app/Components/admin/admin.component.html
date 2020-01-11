@@ -1,0 +1,18 @@
+<h1>Admin Portal</h1>
+<table>
+    <thead>
+        <th>Outreach Name</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Date</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let post of posts">
+            <td>{{organization.name}}</td>
+            <td>{{ post.title }}</td>
+            <td>{{ post.description }}</td>
+            <td>{{ post.date }}</td>
+            <button ng-click="location.href = 'http:/localhost:3001/users/admin/delete'">Delete This Post</button>
+        </tr>
+    </tbody>
+</table>
