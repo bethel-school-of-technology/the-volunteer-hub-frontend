@@ -21,6 +21,7 @@ import { DetailedOrgComponent } from "./Components/detailed-org/detailed-org.com
 import { ProfileComponent } from "./Components/profile/profile.component";
 import { ResolverService } from "./Services/resolver.service";
 import { AdminComponent } from "./Components/admin/admin.component";
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [

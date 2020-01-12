@@ -10,6 +10,11 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   isAuthenticated: boolean = this.checkLogin();
+  adminCheck: boolean;
+
+  checkAdmin() {
+    return this.adminCheck;
+  }
 
   checkLogin() {
     function getCookie(token) {
@@ -52,13 +57,19 @@ export class AuthenticationService {
         map(user => {
           if (user && user.token) {
             this.isAuthenticated = true;
-            // store user details in local storage to keep user logged in
-            return user;
-            // this.currentUserSubject.next(user);
+
+            if (user.user.admin) {
+              this.adminCheck = true;
+              return user;
+            } else {
+              this.adminCheck = false;
+              return user;
+            }
           }
         })
       );
   }
+
 
   logout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

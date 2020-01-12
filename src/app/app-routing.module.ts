@@ -7,6 +7,8 @@ import { LoginuserComponent } from './Components/loginuser/loginuser.component';
 import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ResolverService } from './Services/resolver.service';
+import { AdminComponent } from './Components/admin/admin.component';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -17,7 +19,8 @@ const routes: Routes = [
   { path: 'organizations/:state', component: DetailedOrgComponent },
   { path: 'login', component: LoginuserComponent },
   { path: 'login', component: LoginuserComponent },
-  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } }
+  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
