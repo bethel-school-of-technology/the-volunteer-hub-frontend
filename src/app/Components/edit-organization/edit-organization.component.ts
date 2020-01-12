@@ -13,9 +13,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class EditOrganizationComponent implements OnInit {
 
+  url: string;
   editOrgForm: FormGroup;
   updateOrg = 'http://localhost:3001/users/updateOrg';
   orgUrl = 'http://localhost:3001/getOrgById';
+  deleteOrg = 'http://localhost:3001/users/deleteOrg';
   user: User;
   org: Organizations;
   // tslint:disable-next-line: variable-name,
@@ -24,7 +26,7 @@ export class EditOrganizationComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit() {
     const org = this.route.snapshot.paramMap.get('id');
@@ -73,6 +75,19 @@ export class EditOrganizationComponent implements OnInit {
         console.log('Your organization has been successfully edited.', updatedOrg);
       },
       err => console.log('Error!', err)
+    );
+  }
+
+  async deleteOganizationUrl() {
+    return this.http.delete<void>(`${this.deleteOrg}/${this.org._id}`, { withCredentials: true }).subscribe();
+  }
+
+  deleteOrganization() {
+    this.deleteOganizationUrl().then(
+      deleted => {
+        alert('This organization has been deleted.');
+        location.assign('http://localhost:4200/profile');
+      }
     );
   }
 
