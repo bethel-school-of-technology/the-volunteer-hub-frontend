@@ -3,8 +3,8 @@ import { Organizations } from '../../model/organizations';
 import { User } from '../../model/user';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-organization',
@@ -13,6 +13,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class EditOrganizationComponent implements OnInit {
 
+  editOrgForm: FormGroup;
   updateOrg = 'http://localhost:3001/users/updateOrg';
   orgUrl = 'http://localhost:3001/getOrgById';
   user: User;
@@ -23,38 +24,56 @@ export class EditOrganizationComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient
-  ) {
-    // route.data.subscribe(data => {
-    //   // tslint:disable-next-line: no-string-literal
-    //   this.user = data['user'];
-    // });
-  }
-
-  // tslint:disable-next-line: variable-name
-  // getOrgById(id: number): Observable<Organizations> {
-  //   const url = `${this.orgUrl}/${id}`;
-  //   return this.http.get<Organizations>(url)
-  //     .pipe(map(orgs => orgs[0]),
-  //       tap(o => {
-  //         const outcome = o ? `fetched` : `did not find`;
-  //         console.log(outcome);
-  //       }),
-  //     );
-  // }
+  ) {}
 
   ngOnInit() {
-    let org = this.route.snapshot.paramMap.get('id');
+    const org = this.route.snapshot.paramMap.get('id');
 
     this.http.get<Organizations>(`${this.orgUrl}/${org}`).subscribe(org => {
       this.org = org;
       console.log(org);
     });
-  //   this.route.params.subscribe(params => {
-  //     // tslint:disable-next-line: no-string-literal
-  //     this.id = +params['id'];
-  //     this.getOrgById(this.id)
-  //     .subscribe(o => this.org = o);
-  //   });
+
+    this.editOrgForm = new FormGroup({
+      name: new FormControl('', [
+        Validators.required
+      ]),
+      city: new FormControl('', [
+        Validators.required
+      ]),
+      state: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
+      phoneNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]+$'),
+        Validators.minLength(10),
+        Validators.maxLength(10)
+      ]),
+      description: new FormControl('', [
+        Validators.required
+      ])
+    });
+  }
+
+  async editOrgUrl() {
+    const result: Organizations = Object.assign({}, this.editOrgForm.value);
+    return this.http.patch<any>(`${this.updateOrg}/${this.org._id}`, result, { withCredentials: true }).subscribe();
+  }
+
+  editOrg() {
+    this.editOrgUrl().then(
+      updatedOrg => {
+        location.reload();
+        console.log('Your organization has been successfully edited.', updatedOrg);
+      },
+      err => console.log('Error!', err)
+    );
   }
 
 }

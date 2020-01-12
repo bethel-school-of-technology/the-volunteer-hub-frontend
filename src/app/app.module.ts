@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { PostsComponent } from "./Components/posts/posts.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
@@ -45,7 +46,8 @@ import { EditOrganizationComponent } from './Components/edit-organization/edit-o
     MatSelectModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    FormsModule
   ],
   providers: [ResolverService],
   bootstrap: [AppComponent]
