@@ -5,11 +5,11 @@
 <div>
     <ul *ngFor='let organization of organization'>
         <li>
-            <h5>Outreach Name: {{organization.name}}</h5>
+            <h5><a [routerLink]="['/organization', organization._id]">Outreach Name: {{organization.name}}</a></h5>
             Location: {{organization.city}}, {{organization.state}}.<br>
             Email: {{organization.email}}<br>
             Phone Number: {{organization.phoneNumber}}<br>
-            Description: {{organization.description}}
+            Description: {{organization.description}}<br>
         </li>
     </ul>
 </div>
@@ -17,7 +17,6 @@
 <div id="orgForm">
     <form [formGroup]="orgForm" (ngSubmit)="createOrg()">
         <div class="form-group">
-            <p class="text-primary">Create Organization<br>Value: {{ orgForm.value | json }}</p>
             <hr>
             <mat-form-field>
                 <input matInput placeholder="Organization Name" formControlName="name">
