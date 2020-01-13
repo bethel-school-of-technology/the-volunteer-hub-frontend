@@ -11,7 +11,7 @@
         <a class="indv_h_link" *ngIf="authenticationService.isAuthenticated" href="#" (click)="logout()">Log Out</a>
         <a class="indv_h_link" *ngIf="!authenticationService.isAuthenticated" routerLink='/signup'>Sign Up</a>
         <a class="indv_h_link" *ngIf="!authenticationService.isAuthenticated" href="/login">Login</a>
-        <a class="indv_h_link" href="#">Volunteer Opportunities</a>
+        <a class="indv_h_link" routerLink='/organizations'>Volunteer Opportunities</a>
         <a class="indv_h_link" *ngIf="authenticationService.isAuthenticated" routerLink='/profile'>Profile</a>
         <a class="indv_h_link" routerLink='' routerLinkActive='active'>Home</a>
 

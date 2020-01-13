@@ -30,8 +30,8 @@ export class HomepageComponent implements OnInit {
   reRoute(org) {
     var orgState = org.state;
     console.log(orgState);
-    // const correction = orgState.charAt(0).toUpperCase() + orgState.substring(1);
-    // this.router.navigate(['/organizations', correction]);
+    const correction = orgState.charAt(0).toUpperCase() + orgState.substring(1);
+    this.router.navigate(['/organizations', correction]);
   }
 
   search(){
