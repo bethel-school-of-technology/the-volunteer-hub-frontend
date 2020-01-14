@@ -2,17 +2,28 @@
 <table>
     <thead>
         <th>Outreach Name</th>
-        <th>Title</th>
+        <!-- <th>Title</th>
         <th>Description</th>
-        <th>Date</th>
+        <th>Date</th> -->
     </thead>
     <tbody>
-        <tr *ngFor="let post of posts">
-            <td>{{organization.name}}</td>
-            <td>{{ post.title }}</td>
+        <tr *ngFor="let organizations of organizations">
+            <td>{{ organizations?.name }}</td>
+            <!-- <td>{{ post.title }}</td>
             <td>{{ post.description }}</td>
-            <td>{{ post.date }}</td>
-            <button ng-click="location.href = 'http:/localhost:3001/users/admin/delete'">Delete This Post</button>
+            <td>{{ post.date }}</td> -->
+            <button class="btn-danger" (click)="deleteOrganization()">Delete This Organization</button>
+        </tr>
+    </tbody>
+</table>
+<table>
+    <thead>
+        <th>Oganization Reps</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let users of users">
+            <td>{{ users?.username }}</td>
+            <button class="btn-danger" ng-click="location.href = 'http:/localhost:3001/users/admin/delete'">Delete This User</button>
         </tr>
     </tbody>
 </table>

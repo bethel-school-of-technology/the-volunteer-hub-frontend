@@ -17,6 +17,8 @@ export class LoginuserComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  user: User;
+  private adminUrl = 'http://localhost:3001/users/admin';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +27,7 @@ export class LoginuserComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private http: HttpClient,
     private _loginService: LoginService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -50,24 +52,24 @@ export class LoginuserComponent implements OnInit {
       .login(this.fval.username.value, this.fval.password.value)
       .subscribe(
         data => {
-          //check if user is admin
+          // check if user is admin
           if (data.user.admin) {
-            //create cookie
+            // create cookie
             document.cookie = `token=${data.token}`;
-            var cookies = document.cookie;
+            let cookies = document.cookie;
             console.log(cookies);
             this.router.navigate(['/admin']);
             console.log('login succesful');
           } else {
-            console.log(data);
-            // create cookie
-            document.cookie = `token=${data.token}`;
-            var cookies = document.cookie;
-            console.log(cookies);
-            this.router.navigate(["/profile"]);
-            console.log("login successful");
-          }
-        },
+          console.log(data);
+          // create cookie
+          document.cookie = `token=${data.token}`;
+          let cookies = document.cookie;
+          console.log(cookies);
+          this.router.navigate(["/profile"]);
+          console.log("login successful");
+                }
+              },
         error => {
           alert('Username or password does not exist.');
           console.log(this.fval.username.value, error);
