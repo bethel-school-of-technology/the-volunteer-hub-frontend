@@ -13,7 +13,7 @@ export class AdminComponent implements OnInit {
 
   private orgsUrl = 'http://localhost:3001/getOrgs';
   private usersUrl = 'http://localhost:3001/getUsers';
-  private deleteOrgUrl = 'http://localhost:3001/admin/deleteOrg';
+  private deleteOrgUrl = 'http://localhost:3001/users/admin/deleteOrg';
   posts: Post[];
   organizations: Organizations[];
   org: Organizations;
@@ -33,15 +33,16 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  async deleteOganizationUrl() {
-    return this.http.delete<void>(`${this.deleteOrgUrl}/${this.org._id}`, { withCredentials: true }).subscribe();
+  deleteOganizationUrl(event: any) {
+    console.log(event);
+    return this.http.delete<any>(`${this.deleteOrgUrl}/${event}`, { withCredentials: true });
   }
 
-  deleteOrganization() {
-    this.deleteOganizationUrl().then(
+  deleteOrganization(event: any) {
+    this.deleteOganizationUrl(event).subscribe(
       deleted => {
-        alert('This organization has been deleted.' + '' + deleted);
-        location.assign('http://localhost:4200/profile');
+        alert('This organization has been deleted.' + '' + deleted.message);
+        // location.assign('http://localhost:4200/profile');
       }
     );
   }

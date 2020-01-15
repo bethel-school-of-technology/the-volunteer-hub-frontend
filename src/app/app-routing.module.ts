@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'login', component: LoginuserComponent },
   { path: 'login', component: LoginuserComponent },
   { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] }
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]  }
+
 ];
 
 @NgModule({
