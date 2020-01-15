@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Organizations } from '../../model/organizations';
 import { User } from '../../model/user';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-organization',
@@ -25,7 +24,8 @@ export class EditOrganizationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -63,16 +63,19 @@ export class EditOrganizationComponent implements OnInit {
     });
   }
 
-  async editOrgUrl() {
+  editOrgUrl() {
     const result: Organizations = Object.assign({}, this.editOrgForm.value);
-    return this.http.patch<any>(`${this.updateOrg}/${this.org._id}`, result, { withCredentials: true }).subscribe();
+    return this.http.patch<any>(`${this.updateOrg}/${this.org._id}`, result, { withCredentials: true });
   }
 
   editOrg() {
-    this.editOrgUrl().then(
+    this.editOrgUrl().subscribe(
       updatedOrg => {
-        location.reload();
+        this.org = updatedOrg;
         console.log('Your organization has been successfully edited.', updatedOrg);
+        alert('This organization has been updated');
+        this.router.navigate(['/profile']);
+
       },
       err => console.log('Error!', err)
     );
@@ -86,7 +89,7 @@ export class EditOrganizationComponent implements OnInit {
     this.deleteOganizationUrl().then(
       deleted => {
         alert('This organization has been deleted.');
-        location.assign('http://localhost:4200/profile');
+        this.router.navigate(['/profile']);
       }
     );
   }
