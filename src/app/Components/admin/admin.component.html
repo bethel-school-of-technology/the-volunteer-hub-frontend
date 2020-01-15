@@ -12,7 +12,6 @@
             <!-- <td>{{ post.title }}</td>
             <td>{{ post.description }}</td>
             <td>{{ post.date }}</td> -->
-            <button class="btn-danger" (click)="deleteOrganization()">Delete This Organization</button>
             <button class="btn-warning" (click)="deleteOrganization()">Delete This Organization</button>
         </tr>
     </tbody>
@@ -24,7 +23,6 @@
     <tbody>
         <tr *ngFor="let users of users">
             <td>{{ users?.username }}</td>
-            <button class="btn-danger" ng-click="location.href = 'http:/localhost:3001/users/admin/delete'">Delete This User</button>
             <button class="btn-warning" ng-click="location.href = 'http:/localhost:3001/users/admin/delete'">Delete This
                 User</button>
         </tr>
