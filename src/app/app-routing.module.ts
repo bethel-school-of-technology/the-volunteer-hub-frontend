@@ -8,7 +8,7 @@ import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.com
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ResolverService } from './Services/resolver.service';
 import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
-
+import { ApplicationComponent } from './Components/application/application.component';
 
 
 const routes: Routes = [
@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'organizations/:state', component: DetailedOrgComponent },
   { path: 'login', component: LoginuserComponent },
   { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } },
-  { path: 'organization/:id', component: EditOrganizationComponent }
+  { path: 'organization/:id', component: EditOrganizationComponent },
+  { path: 'apply/:id', component: ApplicationComponent }
 ];
 
 @NgModule({

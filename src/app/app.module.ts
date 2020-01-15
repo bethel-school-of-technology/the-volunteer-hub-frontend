@@ -22,6 +22,7 @@ import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.com
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ResolverService } from './Services/resolver.service';
 import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
+import { ApplicationComponent } from './Components/application/application.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { EditOrganizationComponent } from './Components/edit-organization/edit-o
     NavbarComponent,
     DetailedOrgComponent,
     ProfileComponent,
-    EditOrganizationComponent
+    EditOrganizationComponent,
+    ApplicationComponent
   ],
 
   imports: [

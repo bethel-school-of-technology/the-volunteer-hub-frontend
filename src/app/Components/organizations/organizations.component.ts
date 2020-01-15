@@ -35,10 +35,9 @@ export class OrganizationsComponent implements OnInit {
     }
   
     reRoute(org) {
-      var orgState = org.state;
-      console.log(orgState);
-      // const correction = orgState.charAt(0).toUpperCase() + orgState.substring(1);
-      // this.router.navigate(['/organizations', correction]);
+      var orgId = org._id;
+      console.log(orgId);
+      this.router.navigate(['/apply', orgId]);
     }
   
     search(){
