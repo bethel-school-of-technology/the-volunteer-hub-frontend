@@ -34,21 +34,18 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(['/organizations', correction]);
   }
 
-  search(){
+  search() {
     if (this.searchForm.invalid) {
       return;
     }
 
-    const searchedState = this.getFormValues.state.value
+    const searchedState = this.getFormValues.state.value;
     const correctedState = searchedState.charAt(0).toUpperCase() + searchedState.substring(1);
     console.log(correctedState);
 
     this.http.get<Organizations>(`${this._url}${correctedState}`)
     .subscribe(organization => {
       this.organization = organization;
-    })
+    });
   }
-
-  
-
 }

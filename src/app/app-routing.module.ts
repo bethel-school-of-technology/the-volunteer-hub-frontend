@@ -35,4 +35,5 @@ export const routingComponents = [
   DetailedOrgComponent,
   LoginuserComponent,
   ProfileComponent,
-  EditOrganizationComponent];
+  EditOrganizationComponent
+];

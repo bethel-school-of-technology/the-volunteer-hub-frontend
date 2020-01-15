@@ -1,4 +1,7 @@
-<form class="search bg-info" [formGroup]="searchForm" (ngSubmit)="search()">
+<div class="container">
+  <h1>Organizations</h1>
+
+  <form class="search bg-info" [formGroup]="searchForm" (ngSubmit)="search()">
     <p>Search by State for Organizations near you!</p>
     <div class='s_but'>
       <mat-form-field>
@@ -6,22 +9,25 @@
           matInput
           placeholder="Search by State!"
           formControlName="state"
-        />
+          />
       </mat-form-field>
       <button mat-raised-button class='btn btn-outline-secondary' [disabled]="searchForm.invalid" type="submit">
         Search
       </button>
-  </div>
+    </div>
   </form>
+
   <ul class='liContainer'>
     <li *ngFor='let organ of organ' class='li_item' (click)='reRoute(organ)'>
       <div class='_res'>{{ organ.name }}, {{ organ.city }}</div>
     </li>
   </ul>  
 
-
-<div>
-    <ul *ngFor='let organization of organization'>
-        <li><a href='#'>{{organization.name}}</a></li>
-    </ul>
+  <div class="row">
+    <div class="col-sm-12">
+      <ul *ngFor='let organization of organization'>
+        <li><a href='organization/{{ organization._id }}'>{{ organization.name }}</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
