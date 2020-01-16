@@ -1,7 +1,7 @@
 <h1>Admin Portal</h1>
 <table>
     <thead>
-        <th>Outreach Name</th>
+        <th>Outreach Organization Name</th>
         <!-- <th>Title</th>
         <th>Description</th>
         <th>Date</th> -->
@@ -24,13 +24,18 @@
 </table>
 <table>
     <thead>
-        <th>Oganization Reps</th>
+        <th>Outreach Oganization Representatives</th>
     </thead>
     <tbody>
+        <tr *ngIf="!users">
+            <td>
+                There are no registered representatives.
+            </td>
+        </tr>
         <tr *ngFor="let users of users">
             <td>{{ users?.username }}</td>
-            <button class="btn-warning" ng-click="location.href = 'http:/localhost:3001/users/admin/delete'">Delete This
-                User</button>
+            <button class="btn-warning" (click)="deleteUser(users._id)">Delete This
+                Representatives</button>
         </tr>
     </tbody>
 </table>

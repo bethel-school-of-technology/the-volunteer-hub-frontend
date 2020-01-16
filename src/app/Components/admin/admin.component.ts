@@ -4,6 +4,7 @@ import { Post } from "../../model/post";
 import { Organizations } from "../../model/organizations";
 import { User } from "../../model/user";
 import { OrganizationsApiService } from "../../Services/organizationsApi.service";
+import { UsersApiService } from "../../Services/usersApi.service";
 
 @Component({
   selector: "app-admin",
@@ -16,9 +17,11 @@ export class AdminComponent implements OnInit {
   organizations: Organizations[];
   org: Organizations;
   users: User[];
+  user: User;
 
   constructor(
     private http: HttpClient,
+    private usersApi: UsersApiService,
     private organizationsApi: OrganizationsApiService
   ) {}
 
@@ -26,10 +29,9 @@ export class AdminComponent implements OnInit {
     // this.http.get<Post[]>(this.dataPath).subscribe(posts => {
     //   this.posts = posts;
     // });
-    this.http.get<User[]>(this.usersUrl).subscribe(users => {
-      this.users = users;
-    });
+
     this.loadOrganizations();
+    this.loadUsers();
   }
 
   loadOrganizations() {
@@ -38,11 +40,30 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  loadUsers() {
+    this.usersApi.getUsers().subscribe(users => {
+      this.users = users;
+    });
+  }
+
   deleteOrganization(event: any) {
     this.organizationsApi.deleteOrganization(event).subscribe(deleted => {
       this.loadOrganizations();
 
-      alert("This organization has been deleted." + "" + deleted.message);
+      alert("This organization has been deleted." + " " + deleted.message);
+      // location.assign('http://localhost:4200/profile');
+    });
+  }
+
+  deleteUser(event: any) {
+    this.usersApi.deleteUser(event).subscribe(deleted => {
+      this.loadUsers();
+
+      alert(
+        "This organization representative has been deleted." +
+          " " +
+          deleted.message
+      );
       // location.assign('http://localhost:4200/profile');
     });
   }
