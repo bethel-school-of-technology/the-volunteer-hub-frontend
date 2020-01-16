@@ -61,33 +61,32 @@ export class EditOrganizationComponent implements OnInit {
     });
   }
 
-  async editOrgUrl() {
+  editOrgUrl() {
     const result: Organizations = Object.assign({}, this.editOrgForm.value);
     return this.http
       .patch<any>(`${this.updateOrg}/${this.org._id}`, result, {
         withCredentials: true
-      })
-      .subscribe();
+      });
   }
 
   canEdit() {
     return this.authenticationService.checkLogin();
   }
 
-  // editOrg() {
-  //   this.editOrgUrl().subscribe(
-  //     updatedOrg => {
-  //       this.org = updatedOrg;
-  //       console.log(
-  //         "Your organization has been successfully edited.",
-  //         updatedOrg
-  //       );
-  //       alert("This organization has been updated");
-  //       this.router.navigate(["/profile"]);
-  //     },
-  //     err => console.log("Error!", err)
-  //   );
-  // }
+  editOrg() {
+    this.editOrgUrl().subscribe(
+      updatedOrg => {
+        this.org = updatedOrg;
+        console.log(
+          "Your organization has been successfully edited.",
+          updatedOrg
+        );
+        alert("This organization has been updated");
+        this.router.navigate(["/profile"]);
+      },
+      err => console.log("Error!", err)
+    );
+  }
 
   async deleteOganizationUrl() {
     return this.http
