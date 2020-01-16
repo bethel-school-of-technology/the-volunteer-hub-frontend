@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Post } from "../../model/post";
 import { Organizations } from "../../model/organizations";
 import { User } from "../../model/user";
+import { OrganizationsApiService } from "../../Services/organizationsApi.service";
 
 @Component({
   selector: "app-admin",
@@ -10,15 +11,16 @@ import { User } from "../../model/user";
   styleUrls: ["./admin.component.css"]
 })
 export class AdminComponent implements OnInit {
-  private orgsUrl = "http://localhost:3001/getOrgs";
   private usersUrl = "http://localhost:3001/getUsers";
-  private deleteOrgUrl = "http://localhost:3001/users/admin/deleteOrg";
   posts: Post[];
   organizations: Organizations[];
   org: Organizations;
   users: User[];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private organizationsApi: OrganizationsApiService
+  ) {}
 
   ngOnInit() {
     // this.http.get<Post[]>(this.dataPath).subscribe(posts => {
@@ -31,20 +33,13 @@ export class AdminComponent implements OnInit {
   }
 
   loadOrganizations() {
-    this.http.get<Organizations[]>(this.orgsUrl).subscribe(organizations => {
+    this.organizationsApi.getOrganizations().subscribe(organizations => {
       this.organizations = organizations;
     });
   }
 
-  deleteOganizationUrl(event: any) {
-    console.log(event);
-    return this.http.delete<any>(`${this.deleteOrgUrl}/${event}`, {
-      withCredentials: true
-    });
-  }
-
   deleteOrganization(event: any) {
-    this.deleteOganizationUrl(event).subscribe(deleted => {
+    this.organizationsApi.deleteOrganization(event).subscribe(deleted => {
       this.loadOrganizations();
 
       alert("This organization has been deleted." + "" + deleted.message);
