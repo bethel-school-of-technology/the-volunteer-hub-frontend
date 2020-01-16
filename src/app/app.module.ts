@@ -22,6 +22,7 @@ import { ProfileComponent } from "./Components/profile/profile.component";
 import { ResolverService } from "./Services/resolver.service";
 import { AdminComponent } from "./Components/admin/admin.component";
 import { AuthGuard } from './auth.guard';
+import { AuthenticationService } from './Services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { AuthGuard } from './auth.guard';
     MatCheckboxModule,
     MatChipsModule
   ],
-  providers: [ResolverService],
+  providers: [ResolverService, AuthGuard, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

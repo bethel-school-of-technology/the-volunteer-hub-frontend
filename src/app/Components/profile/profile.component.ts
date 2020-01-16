@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
   createOrg() {
     this.orgUrl().then(
       newOrg => {
-        location.reload();
+        this.ngOnInit();
         console.log('Your new organization has been posted.', newOrg);
       },
       err => console.log('Error!', err)

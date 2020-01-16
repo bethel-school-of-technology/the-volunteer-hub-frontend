@@ -12,7 +12,6 @@ import { UsersApiService } from "../../Services/usersApi.service";
   styleUrls: ["./admin.component.css"]
 })
 export class AdminComponent implements OnInit {
-  private usersUrl = "http://localhost:3001/getUsers";
   posts: Post[];
   organizations: Organizations[];
   org: Organizations;
@@ -29,7 +28,6 @@ export class AdminComponent implements OnInit {
     // this.http.get<Post[]>(this.dataPath).subscribe(posts => {
     //   this.posts = posts;
     // });
-
     this.loadOrganizations();
     this.loadUsers();
   }

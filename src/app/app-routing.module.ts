@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { SignUpComponentComponent } from './Components/sign-up-component/sign-up-component.component';
 import { HomepageComponent } from './Components/homepage/homepage.component';
 import { OrganizationsComponent } from './Components/organizations/organizations.component';
@@ -26,7 +26,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }
 

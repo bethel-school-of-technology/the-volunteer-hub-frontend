@@ -5,6 +5,7 @@ import { AuthenticationService } from "./Services/authentication.service";
 import { Router } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,5 +26,4 @@ export class AuthGuard implements CanActivate {
         return false;
       }
   }
-  
 }
