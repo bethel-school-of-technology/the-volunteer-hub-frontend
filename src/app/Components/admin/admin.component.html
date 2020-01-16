@@ -7,12 +7,18 @@
         <th>Date</th> -->
     </thead>
     <tbody>
+        <tr *ngIf="!organizations">
+            <td>
+                There are no organizations.
+            </td>
+        </tr>
         <tr *ngFor="let organizations of organizations">
             <td>{{ organizations?.name }}</td>
             <!-- <td>{{ post.title }}</td>
             <td>{{ post.description }}</td>
             <td>{{ post.date }}</td> -->
-            <button class="btn-warning" (click)="deleteOrganization(organizations._id)">Delete This Organization</button>
+            <button class="btn-warning" (click)="deleteOrganization(organizations._id)">Delete This
+                Organization</button>
         </tr>
     </tbody>
 </table>
