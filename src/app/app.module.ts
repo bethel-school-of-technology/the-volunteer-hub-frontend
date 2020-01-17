@@ -24,6 +24,7 @@ import { ResolverService } from "./Services/resolver.service";
 import { AdminComponent } from "./Components/admin/admin.component";
 import { AuthGuard } from './auth.guard';
 import { AuthenticationService } from './Services/authentication.service';
+import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
 
 
 @NgModule({

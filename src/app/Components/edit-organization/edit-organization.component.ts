@@ -82,7 +82,7 @@ export class EditOrganizationComponent implements OnInit {
           updatedOrg
         );
         alert("This organization has been updated");
-        this.router.navigate(["/profile"]);
+        this.ngOnInit();
       },
       err => console.log("Error!", err)
     );
