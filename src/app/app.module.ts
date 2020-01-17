@@ -38,8 +38,8 @@ import { ApplicationComponent } from './Components/application/application.compo
     DetailedOrgComponent,
     ProfileComponent,
     EditOrganizationComponent,
-    ApplicationComponent
-    AdminComponent,
+    ApplicationComponent,
+    AdminComponent
   ],
 
   imports: [

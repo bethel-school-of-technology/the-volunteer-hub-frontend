@@ -30,43 +30,31 @@ export class OrganizationsComponent implements OnInit {
   }
 
 
-    // access form fields
-    get getFormValues() {
-      return this.searchForm.controls;
-    }
-  
-    reRoute(org) {
-      var orgId = org._id;
-      console.log(orgId);
-      this.router.navigate(['/apply', orgId]);
-    }
-  
+  // access form fields
+  get getFormValues() {
+    return this.searchForm.controls;
+  }
+
+  reRoute(org) {
+    var orgId = org._id;
+    console.log(orgId);
+    this.router.navigate(['/apply', orgId]);
+  }
+
     search(){
       if (this.searchForm.invalid) {
         return;
       }
 
-  
-  reRoute(org) {
-    var orgState = org.state;
-    console.log(orgState);
-    // const correction = orgState.charAt(0).toUpperCase() + orgState.substring(1);
-    // this.router.navigate(['/organizations', correction]);
-  }
-  
-  search(){
-    if (this.searchForm.invalid) {
-      return;
+      const searchedState = this.getFormValues.state.value
+      const correctedState = searchedState.charAt(0).toUpperCase() + searchedState.substring(1);
+      console.log(correctedState);
+
+      this._http.get<Organizations>(`${this._url_specific}${correctedState}`)
+        .subscribe(organization => {
+          this.organ = organization;
+        })
     }
 
-    const searchedState = this.getFormValues.state.value
-    const correctedState = searchedState.charAt(0).toUpperCase() + searchedState.substring(1);
-    console.log(correctedState);
-
-    this._http.get<Organizations>(`${this._url_specific}${correctedState}`)
-    .subscribe(organization => {
-      this.organ = organization;
-    })
   }
 
-}
