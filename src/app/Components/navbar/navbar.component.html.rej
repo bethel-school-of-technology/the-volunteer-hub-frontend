@@ -1,0 +1,12 @@
+diff a/src/app/Components/navbar/navbar.component.html b/src/app/Components/navbar/navbar.component.html	(rejected hunks)
+@@ -11,8 +11,8 @@
+         <a class="indv_h_link" *ngIf="authenticationService.isAuthenticated" href="#" (click)="logout()">Log Out</a>
+         <a class="indv_h_link" *ngIf="!authenticationService.isAuthenticated" routerLink='/signup'>Sign Up</a>
+         <a class="indv_h_link" *ngIf="!authenticationService.isAuthenticated" href="/login">Login</a>
+-        <a class="indv_h_link" routerLink='/organizations'>Volunteer Opportunities</a>
+-        <a class="indv_h_link" *ngIf="authenticationService.isAuthenticated" routerLink='/profile'>Profile</a>
++        <a class="indv_h_link" routerLink='/organizations'>Organizations</a>
++        <a class="indv_h_link" *ngIf="authenticationService.isAuthenticated" routerLink='/profile'>Organizer Profile</a>
+         <a class="indv_h_link" routerLink='' routerLinkActive='active'>Home</a>
+ 
+     </div>

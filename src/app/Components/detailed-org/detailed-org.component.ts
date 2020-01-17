@@ -10,7 +10,8 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./detailed-org.component.css']
 })
 export class DetailedOrgComponent implements OnInit {
-  _url: string = 'http://localhost:3001/getOrgs';
+  // tslint:disable-next-line: variable-name
+  _url = 'http://localhost:3001/getOrgs';
   organization: Organizations[];
 
   constructor(

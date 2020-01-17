@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { PostsComponent } from "./Components/posts/posts.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
@@ -24,6 +25,7 @@ import { AdminComponent } from "./Components/admin/admin.component";
 import { AuthGuard } from './auth.guard';
 import { AuthenticationService } from './Services/authentication.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { AuthenticationService } from './Services/authentication.service';
     NavbarComponent,
     DetailedOrgComponent,
     ProfileComponent,
-    AdminComponent
+    AdminComponent,
+    EditOrganizationComponent
+
   ],
 
   imports: [
@@ -46,7 +50,8 @@ import { AuthenticationService } from './Services/authentication.service';
     MatSelectModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule,
+    FormsModule
   ],
   providers: [ResolverService, AuthGuard, AuthenticationService],
   bootstrap: [AppComponent]
