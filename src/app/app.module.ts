@@ -25,6 +25,7 @@ import { AdminComponent } from "./Components/admin/admin.component";
 import { AuthGuard } from './auth.guard';
 import { AuthenticationService } from './Services/authentication.service';
 import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
+import { ApplicationComponent } from './Components/application/application.component';
 
 
 @NgModule({
@@ -36,9 +37,9 @@ import { EditOrganizationComponent } from './Components/edit-organization/edit-o
     NavbarComponent,
     DetailedOrgComponent,
     ProfileComponent,
+    EditOrganizationComponent,
+    ApplicationComponent
     AdminComponent,
-    EditOrganizationComponent
-
   ],
 
   imports: [

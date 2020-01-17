@@ -10,7 +10,7 @@ import { ResolverService } from './Services/resolver.service';
 import { AdminComponent } from './Components/admin/admin.component';
 import { AuthGuard } from './auth.guard';
 import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
-
+import { ApplicationComponent } from './Components/application/application.component';
 
 
 
@@ -20,11 +20,10 @@ const routes: Routes = [
   { path: 'organizations', component: OrganizationsComponent },
   { path: 'organizations/:state', component: DetailedOrgComponent },
   { path: 'login', component: LoginuserComponent },
-  { path: 'login', component: LoginuserComponent },
-  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService } },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]  },
-  { path: 'organization/:id', component: EditOrganizationComponent }
-
+  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } },
+  { path: 'organization/:id', component: EditOrganizationComponent },
+  { path: 'apply/:id', component: ApplicationComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]  }
 ];
 
 @NgModule({

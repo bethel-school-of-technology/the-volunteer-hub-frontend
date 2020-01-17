@@ -1,0 +1,14 @@
+<p>application works!</p>
+
+<h1>{{ org?.name }}</h1>
+
+
+<form [formGroup]="myForm" (ngSubmit)="apply()">
+    <mat-form-field>
+        <input matInput placeholder="Your Name" formControlName="applicant" />
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Phone Number" formControlName="contact" />
+    </mat-form-field>
+    <button mat-raised-button class="btn btn-outline-secondary" [disabled]="myForm.invalid" type="submit">Apply</button>
+</form>

@@ -29,10 +29,23 @@ export class OrganizationsComponent implements OnInit {
     });
   }
 
-  // access form fields
-  get getFormValues() {
-    return this.searchForm.controls;
-  }
+
+    // access form fields
+    get getFormValues() {
+      return this.searchForm.controls;
+    }
+  
+    reRoute(org) {
+      var orgId = org._id;
+      console.log(orgId);
+      this.router.navigate(['/apply', orgId]);
+    }
+  
+    search(){
+      if (this.searchForm.invalid) {
+        return;
+      }
+
   
   reRoute(org) {
     var orgState = org.state;
