@@ -13,7 +13,7 @@ export class ResolverService implements Resolve<User> {
   constructor(private http: HttpClient) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
-    return this.http.get<User>('http://localhost:3001/users/Userprofile', { withCredentials: true });
+    return this.http.get<User>('http://localhost:3001/users/userProfile', { withCredentials: true });
   }
 
   resolveOrg(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Organizations> {

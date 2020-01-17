@@ -72,8 +72,12 @@ export class ProfileComponent implements OnInit {
   createOrg() {
     this.orgUrl().then(
       newOrg => {
+
         // location.reload();
+
         console.log('Your new organization has been posted.', newOrg);
+        alert('Your organization has been posted!');
+        this.router.navigate(['/organizations']);
       },
       err => console.log('Error!', err)
     );
