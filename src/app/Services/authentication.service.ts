@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-
 import { User } from "../model/user";
 
 @Injectable({ providedIn: "root" })
@@ -11,24 +10,29 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   isAuthenticated: boolean = this.checkLogin();
+  adminCheck: boolean;
+
+  checkAdmin() {
+    return this.adminCheck;
+  }
 
   checkLogin() {
     function getCookie(token) {
-      var name = token + '=';
+      var name = token + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for (var i=0; i < ca.length; i++) {
+      var ca = decodedCookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while(c.charAt(0) == ' '){
+        while (c.charAt(0) == " ") {
           c = c.substring(1);
         }
         if (c.indexOf(name) == 0) {
           return c.substring(name.length, c.length);
         }
       }
-      return '';
+      return "";
     }
-    if (getCookie('token')) {
+    if (getCookie("token")) {
       return true;
     } else {
       return false;
@@ -53,13 +57,19 @@ export class AuthenticationService {
         map(user => {
           if (user && user.token) {
             this.isAuthenticated = true;
-            // store user details in local storage to keep user logged in
-            return user;
-            // this.currentUserSubject.next(user);
+
+            if (user.user.admin) {
+              this.adminCheck = true;
+              return user;
+            } else {
+              this.adminCheck = false;
+              return user;
+            }
           }
         })
       );
   }
+
 
   logout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

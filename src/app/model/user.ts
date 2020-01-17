@@ -1,5 +1,8 @@
 export class User {
-    username: string;
-    email: string;
-    password: string;
+  // tslint:disable-next-line: variable-name
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  admin: boolean;
 }

@@ -14,14 +14,16 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { LoginuserComponent } from "./Components/loginuser/loginuser.component";
 import { NavbarComponent } from "./Components/navbar/navbar.component";
-import { DetailedOrgComponent } from './Components/detailed-org/detailed-org.component';
-import { ProfileComponent } from './Components/profile/profile.component';
-import { ResolverService } from './Services/resolver.service';
-import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
+import { DetailedOrgComponent } from "./Components/detailed-org/detailed-org.component";
+import { ProfileComponent } from "./Components/profile/profile.component";
+import { ResolverService } from "./Services/resolver.service";
+import { AdminComponent } from "./Components/admin/admin.component";
+import { AuthGuard } from './auth.guard';
+import { AuthenticationService } from './Services/authentication.service';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { EditOrganizationComponent } from './Components/edit-organization/edit-o
     NavbarComponent,
     DetailedOrgComponent,
     ProfileComponent,
+    AdminComponent,
     EditOrganizationComponent
+
   ],
 
   imports: [
@@ -49,7 +53,7 @@ import { EditOrganizationComponent } from './Components/edit-organization/edit-o
     MatChipsModule,
     FormsModule
   ],
-  providers: [ResolverService],
+  providers: [ResolverService, AuthGuard, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
