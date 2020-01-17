@@ -1,8 +1,6 @@
 <div id="wrapper">
     <form [formGroup]="myForm" (ngSubmit)="signup()">
-        <!-- This shows a live preview of what is being typed and what will be sent to the db -->
         <div class="form-group">
-            <p class='text-primary'>Sign Up!<br>Value: {{ myForm.value | json }}</p>
             <hr>
             <mat-form-field>
                 <input matInput placeholder='email' formControlName='email' class="form-control text-primary"/>

@@ -1,64 +1,86 @@
-<h1>Welcome to the Volunteer Hub, {{user.username}}!</h1>
-<h2>Email: {{user.email}}</h2>
-<br>
-<h4>Your Organizations</h4>
-<div>
-    <ul *ngFor='let organization of organization'>
-        <li>
-            <h5>Outreach Name: {{organization.name}}</h5>
-            Location: {{organization.city}}, {{organization.state}}.<br>
-            Email: {{organization.email}}<br>
-            Phone Number: {{organization.phoneNumber}}<br>
-            Description: {{organization.description}}
-        </li>
-    </ul>
-</div>
-<h3>Create Organization Form</h3>
-<div id="orgForm">
-    <form [formGroup]="orgForm" (ngSubmit)="createOrg()">
-        <div class="form-group">
-            <p class="text-primary">Create Organization<br>Value: {{ orgForm.value | json }}</p>
-            <hr>
-            <mat-form-field>
-                <input matInput placeholder="Organization Name" formControlName="name">
-                <mat-error *ngIf="orgForm.controls.name.invalid && orgForm.controls.name.touched">
-                    A name for your organization is required.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="City" formControlName="city">
-                <mat-error *ngIf="orgForm.controls.city.invalid && orgForm.controls.city.touched">
-                    A city for your organization is required.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="State" formControlName="state">
-                <mat-error *ngIf="orgForm.controls.state.invalid && orgForm.controls.state.touched">
-                    A state for your organization is required.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Email" formControlName="email">
-                <mat-error *ngIf="orgForm.controls.email.invalid && orgForm.controls.email.touched">
-                    Must be a valid email address.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Phone Number" formControlName="phoneNumber">
-                <mat-hint MatHint.align="end">Numbers Only</mat-hint>
-                <mat-error *ngIf="orgForm.controls.phoneNumber.invalid && orgForm.controls.phoneNumber.touched">
-                    A phone number for your organization is required.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Organization Description" formControlName="description">
-                <mat-error *ngIf="orgForm.controls.description.invalid && orgForm.controls.description.touched">
-                    Please write a description of your organization.
-                </mat-error>
-            </mat-form-field>
+<div class="container">
+    <h1>Organizer Profile</h1>
+
+    <p>Welcome, {{ user.username }}!</p>
+    <p>Email: {{ user.email }}</p>
+
+    <h2>Your Organizations</h2>
+
+    <div *ngIf="organization">
+        You have not added any organizations yet.
+    </div>
+
+    <div>
+        <ul *ngFor='let organization of organization'>
+            <li>
+                <h5><a [routerLink]="['/organization', organization._id]">Outreach Name: {{organization.name}}</a></h5>
+                Location: {{organization.city}}, {{organization.state}}.<br>
+                Email: {{organization.email}}<br>
+                Phone Number: {{organization.phoneNumber}}<br>
+                Description: {{organization.description}}<br>
+            </li>
+        </ul>
+    </div>
+
+    <h2>Create Organization</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="orgForm" (ngSubmit)="createOrg()">
+                <div class="form-group">
+                    <mat-form-field hintLabel="Your organization name">
+                        <input matInput placeholder="Name" formControlName="name">
+                        <mat-error *ngIf="orgForm.controls.name.invalid && orgForm.controls.name.touched">
+                            A name for your organization is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="City" formControlName="city">
+                        <mat-error *ngIf="orgForm.controls.city.invalid && orgForm.controls.city.touched">
+                            A city for your organization is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="State" formControlName="state">
+                        <mat-error *ngIf="orgForm.controls.state.invalid && orgForm.controls.state.touched">
+                            A state for your organization is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="Email" formControlName="email">
+                        <mat-error *ngIf="orgForm.controls.email.invalid && orgForm.controls.email.touched">
+                            Must be a valid email address.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field>
+                        <input matInput placeholder="Phone Number" formControlName="phoneNumber">
+                        <mat-hint MatHint.align="end">Numbers Only</mat-hint>
+                        <mat-error *ngIf="orgForm.controls.phoneNumber.invalid && orgForm.controls.phoneNumber.touched">
+                            A phone number for your organization is required.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field hintLabel="Describe your organization's volunteer opportunities">
+                        <textarea cdkTextareaAutosize matInput placeholder="Volunteer Opportunities" formControlName="description"></textarea>
+                        <mat-error *ngIf="orgForm.controls.description.invalid && orgForm.controls.description.touched">
+                            Please write a description of your organization.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <button mat-raised-button [disabled]="orgForm.invalid" type="submit" class="btn btn-outline-primary">
+                    Submit
+                </button>
+            </form>
         </div>
-        <button mat-raised-button [disabled]="orgForm.invalid" type="submit" class="btn btn-outline-primary">
-            Submit
-        </button>
-    </form>
+    </div>
 </div>

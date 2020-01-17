@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit {
   organization: Organizations[];
   private url = 'http://localhost:3001/users/userOrgs';
   private createOrgUrl = 'http://localhost:3001/users/createOrg';
-  private updateOrgUrl = 'http://localhost:3001/users/updateOrg/:orgId';
 
   constructor(
     private http: HttpClient,
@@ -27,6 +26,7 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     ) {
     route.data.subscribe(data => {
+      // tslint:disable-next-line: no-string-literal
       this.user = data['user'];
     });
   }

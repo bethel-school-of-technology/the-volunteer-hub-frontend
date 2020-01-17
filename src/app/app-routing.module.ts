@@ -9,6 +9,8 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { ResolverService } from './Services/resolver.service';
 import { AdminComponent } from './Components/admin/admin.component';
 import { AuthGuard } from './auth.guard';
+import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
+
 
 
 
@@ -20,7 +22,8 @@ const routes: Routes = [
   { path: 'login', component: LoginuserComponent },
   { path: 'login', component: LoginuserComponent },
   { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]  }
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]  },
+  { path: 'organization/:id', component: EditOrganizationComponent }
 
 ];
 
@@ -37,4 +40,6 @@ export const routingComponents = [
   OrganizationsComponent,
   DetailedOrgComponent,
   LoginuserComponent,
-  ProfileComponent];
+  ProfileComponent,
+  EditOrganizationComponent
+];
