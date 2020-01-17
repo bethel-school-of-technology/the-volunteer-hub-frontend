@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
 import { User } from "../model/user";
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
@@ -11,6 +12,7 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
   isAuthenticated: boolean = this.checkLogin();
   adminCheck: boolean;
+  router: Router;
 
   checkAdmin() {
     return this.adminCheck;
@@ -74,9 +76,7 @@ export class AuthenticationService {
   logout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     this.isAuthenticated = false;
+    this.adminCheck = false;
     console.log(document.cookie);
-    // remove user data from local storage for log out
-    // localStorage.removeItem('currentUser');
-    // this.currentUserSubject.next(null);
   }
 }

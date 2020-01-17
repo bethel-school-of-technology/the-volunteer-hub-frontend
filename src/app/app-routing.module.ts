@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'organizations/:state', component: DetailedOrgComponent },
   { path: 'login', component: LoginuserComponent },
   { path: 'login', component: LoginuserComponent },
-  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService, org: ResolverService } },
+  { path: 'profile', component: ProfileComponent, resolve: { user: ResolverService } },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]  },
   { path: 'organization/:id', component: EditOrganizationComponent }
 
