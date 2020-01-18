@@ -4,7 +4,24 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
 import { User } from "../model/user";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
+
+function getCookie(param: string) {
+  var name = param + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+
+  var ca = decodedCookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
@@ -15,25 +32,10 @@ export class AuthenticationService {
   router: Router;
 
   checkAdmin() {
-    return this.adminCheck;
+    return getCookie("admin") == "true";
   }
 
   checkLogin() {
-    function getCookie(token) {
-      var name = token + "=";
-      var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(";");
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == " ") {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
-    }
     if (getCookie("token")) {
       return true;
     } else {
@@ -56,25 +58,39 @@ export class AuthenticationService {
     return this.http
       .post<any>(`http://localhost:3001/users/login`, { username, password })
       .pipe(
-        map(user => {
-          if (user && user.token) {
+        map(data => {
+          if (data && data.token) {
             this.isAuthenticated = true;
 
-            if (user.user.admin) {
-              this.adminCheck = true;
-              return user;
-            } else {
-              this.adminCheck = false;
-              return user;
-            }
+            this.adminCheck = data.user.admin;
+
+            // create cookies
+            document.cookie = `token=${data.token}`;
+            document.cookie = `admin=${data.user.admin}`;
+
+            // document.cookie = `token=${data.token};admin=${data.user.admin}`;
+            // document.cookie =
+            //   "cookie=" +
+            //   JSON.stringify({
+            //     token: data.token,
+            //     admin: data.user.admin
+            //   });
+
+            console.log(document.cookie);
+
+            // console.log("Logged in:");
+            // this.checkAdmin();
+
+            return data;
           }
         })
       );
   }
 
-
   logout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "admin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
     this.isAuthenticated = false;
     this.adminCheck = false;
     console.log(document.cookie);

@@ -7,7 +7,7 @@ import { AppComponent } from "./app.component";
 import { PostsComponent } from "./Components/posts/posts.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ReactiveFormsModule } from "@angular/forms";
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from "@angular/forms";
 
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
@@ -22,11 +22,10 @@ import { DetailedOrgComponent } from "./Components/detailed-org/detailed-org.com
 import { ProfileComponent } from "./Components/profile/profile.component";
 import { ResolverService } from "./Services/resolver.service";
 import { AdminComponent } from "./Components/admin/admin.component";
-import { AuthGuard } from './auth.guard';
-import { AuthenticationService } from './Services/authentication.service';
-import { EditOrganizationComponent } from './Components/edit-organization/edit-organization.component';
-import { ApplicationComponent } from './Components/application/application.component';
-
+import { AuthGuard } from "./auth.guard";
+import { AuthenticationService } from "./Services/authentication.service";
+import { EditOrganizationComponent } from "./Components/edit-organization/edit-organization.component";
+import { ApplicationComponent } from "./Components/application/application.component";
 
 @NgModule({
   declarations: [

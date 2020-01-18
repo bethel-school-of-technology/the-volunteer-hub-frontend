@@ -52,6 +52,8 @@ export class LoginuserComponent implements OnInit {
       .login(this.fval.username.value, this.fval.password.value)
       .subscribe(
         data => {
+          console.log(data);
+
           // check if user is admin
           if (data.user.admin) {
             // create cookie
