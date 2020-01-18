@@ -3,17 +3,16 @@
         <img class="logoImage" src="../../../assets/images/IMG_1325.PNG">
     </div>
 
-
-
     <div class="topnav" id="myTopnav">
         <!-- Set up ROUTERLINKS https://blog.angular-university.io/angular-2-router-nested-routes-and-nested-auxiliary-routes-build-a-menu-navigation-system/ -->
 
         <a class="indv_h_link" *ngIf="authenticationService.checkAdmin()" routerLink='/admin'>Admin</a>
-        <a class="indv_h_link" *ngIf="authenticationService.isAuthenticated" routerLink="" (click)="logout()">Log Out</a>
+        <a class="indv_h_link" *ngIf="authenticationService.isAuthenticated" routerLink="" (click)="logout()">Log
+            Out</a>
         <a class="indv_h_link" *ngIf="!authenticationService.isAuthenticated" routerLink='/signup'>Sign Up</a>
         <a class="indv_h_link" *ngIf="!authenticationService.isAuthenticated" routerLink="/login">Login</a>
         <a class="indv_h_link" routerLink='/organizations'>Organizations</a>
-        <a class="indv_h_link" *ngIf="authenticationService.isAuthenticated" routerLink='/profile'>Your Profile</a>
+        <a class="indv_h_link" *ngIf="!authenticationService.checkAdmin()" routerLink='/profile'>Organizer Profile</a>
         <a class="indv_h_link" routerLink='' routerLinkActive='active'>Home</a>
 
     </div>
