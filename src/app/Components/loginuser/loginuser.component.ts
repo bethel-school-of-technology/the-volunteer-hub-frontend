@@ -56,12 +56,21 @@ export class LoginuserComponent implements OnInit {
 
           // check if user is admin
           if (data.user.admin) {
+            // create cookie
+            document.cookie = `token=${data.token}`;
+            let cookies = document.cookie;
+            console.log(cookies);
             this.router.navigate(["/admin"]);
+            console.log("login succesful");
           } else {
+            console.log(data);
+            // create cookie
+            document.cookie = `token=${data.token}`;
+            let cookies = document.cookie;
+            console.log(cookies);
             this.router.navigate(["/profile"]);
+            console.log("login successful");
           }
-
-          console.log("login succesful");
         },
         error => {
           alert("Username or password does not exist.");
