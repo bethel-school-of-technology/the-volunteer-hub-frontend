@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-sm-12">
             <ul *ngFor='let organization of organization'>
-                <ul><a [routerLink]="['/organization', organization._id]">{{ organization.name }}</a></ul>
+                <ul><a [routerLink]="['/apply', organization._id]">{{ organization.name }}</a></ul>
                 <ul>{{organization.city}}, {{organization.state}}</ul>
             </ul>
         </div>
