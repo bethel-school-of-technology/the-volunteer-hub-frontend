@@ -17,7 +17,7 @@
                 Location: {{organization.city}}, {{organization.state}}.<br>
                 Email: {{organization.email}}<br>
                 Phone Number: {{organization.phoneNumber}}<br>
-                Description: {{organization.description}}<br>
+                Volunteer Opportunities: {{organization.description}}<br>
             </li>
         </ul>
     </div>
@@ -70,9 +70,10 @@
                 </div>
                 <div class="form-group">
                     <mat-form-field hintLabel="Describe your organization's volunteer opportunities">
-                        <textarea cdkTextareaAutosize matInput placeholder="Volunteer Opportunities" formControlName="description"></textarea>
+                        <textarea cdkTextareaAutosize matInput placeholder="Volunteer Opportunities"
+                            formControlName="description"></textarea>
                         <mat-error *ngIf="orgForm.controls.description.invalid && orgForm.controls.description.touched">
-                            Please write a description of your organization.
+                            Please write a description of your organization's volunteer opportunities.
                         </mat-error>
                     </mat-form-field>
                 </div>

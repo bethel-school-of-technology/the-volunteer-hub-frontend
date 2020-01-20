@@ -63,10 +63,9 @@ export class EditOrganizationComponent implements OnInit {
 
   editOrgUrl() {
     const result: Organizations = Object.assign({}, this.editOrgForm.value);
-    return this.http
-      .patch<any>(`${this.updateOrg}/${this.org._id}`, result, {
-        withCredentials: true
-      });
+    return this.http.patch<any>(`${this.updateOrg}/${this.org._id}`, result, {
+      withCredentials: true
+    });
   }
 
   canEdit() {
@@ -82,7 +81,7 @@ export class EditOrganizationComponent implements OnInit {
           updatedOrg
         );
         alert("This organization has been updated");
-        this.router.navigate(['/profile']);
+        this.router.navigate(["/profile"]);
       },
       err => console.log("Error!", err)
     );

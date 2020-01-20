@@ -5,7 +5,7 @@
         <p>Contact Info:</p>
         <p>Email: {{ org?.email }}</p>
         <p>Phone Number: {{ org?.phoneNumber }}</p>
-        <b>Description:</b><br>
+        <b>Volunteer Opportunities:</b><br>
         <p>{{ org?.description }}</p>
     </div>
 
@@ -47,17 +47,20 @@
                         <mat-form-field>
                             <input matInput placeholder="Phone Number" formControlName="phoneNumber">
                             <mat-hint MatHint.align="end">Numbers Only</mat-hint>
-                            <mat-error *ngIf="editOrgForm.controls.phoneNumber.invalid && editOrgForm.controls.phoneNumber.touched">
+                            <mat-error
+                                *ngIf="editOrgForm.controls.phoneNumber.invalid && editOrgForm.controls.phoneNumber.touched">
                                 Must be a valid phone number.
                             </mat-error>
                         </mat-form-field>
                     </div>
                     <div class="form-group">
                         <mat-form-field hintLabel="Describe your organization's volunteer opportunities">
-                            <textarea cdkTextareaAutosize matInput placeholder="Volunteer Opportunities" formControlName="description"></textarea>
+                            <textarea cdkTextareaAutosize matInput placeholder="Volunteer Opportunities"
+                                formControlName="description"></textarea>
                         </mat-form-field>
                     </div>
-                    <button mat-raised-button [disabled]="editOrgForm.invalid" type="submit" class="btn btn-outline-primary">
+                    <button mat-raised-button [disabled]="editOrgForm.invalid" type="submit"
+                        class="btn btn-outline-primary">
                         Submit
                     </button>
                 </form>
