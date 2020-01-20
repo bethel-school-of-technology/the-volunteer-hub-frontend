@@ -24,9 +24,11 @@ export class EditOrganizationComponent implements OnInit {
   orgUrl = "http://localhost:3001/getOrgById";
   deleteOrg = "http://localhost:3001/users/deleteOrg";
   user: User;
+  currentUser;
   org: Organizations;
   // tslint:disable-next-line: variable-name,
   id: number;
+  valid: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +43,10 @@ export class EditOrganizationComponent implements OnInit {
     this.http.get<Organizations>(`${this.orgUrl}/${org}`).subscribe(org => {
       this.org = org;
       console.log(org);
+      this.http.get<any>('http://localhost:3001/users/getUser', { withCredentials: true }).subscribe(user => {
+        this.currentUser = user;
+        this.canEdit(org, user);
+      });
     });
 
     this.editOrgForm = new FormGroup({
@@ -68,8 +74,23 @@ export class EditOrganizationComponent implements OnInit {
     });
   }
 
-  canEdit() {
-    return this.authenticationService.checkLogin();
+  canEdit(org, user) {
+    let username = user.user.username;
+    let values = {
+      "_id": org._id,
+      "user": username
+    }
+    this.http.post<any>('http://localhost:3001/users/compareUser', values, { withCredentials: true }).subscribe(
+        result => {
+          if (result.message == "All good!") {
+            console.log(result);
+            this.valid = true;
+          } else {
+            this.valid = false;
+          }
+        }
+      )
+
   }
 
   editOrg() {

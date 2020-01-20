@@ -9,7 +9,7 @@
         <p>{{ org?.description }}</p>
     </div>
 
-    <div *ngIf="canEdit()">
+    <div *ngIf="valid">
         <button class="btn-danger" (click)="deleteOrganization()">DELETE</button>
         <hr>
         <h2>Edit Organization</h2>

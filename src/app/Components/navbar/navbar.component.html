@@ -12,7 +12,7 @@
         <a class="indv_h_link" *ngIf="!authenticationService.isAuthenticated" routerLink='/signup'>Sign Up</a>
         <a class="indv_h_link" *ngIf="!authenticationService.isAuthenticated" routerLink="/login">Login</a>
         <a class="indv_h_link" routerLink='/organizations'>Organizations</a>
-        <a class="indv_h_link" *ngIf="!authenticationService.checkAdmin()" routerLink='/profile'>Organizer Profile</a>
+        <a class="indv_h_link" *ngIf="!authenticationService.checkAdmin() && authenticationService.isAuthenticated" routerLink='/profile'>Organizer Profile</a>
         <a class="indv_h_link" routerLink='' routerLinkActive='active'>Home</a>
 
     </div>

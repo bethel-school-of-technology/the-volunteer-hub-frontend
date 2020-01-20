@@ -31,8 +31,29 @@ export class AuthenticationService {
   adminCheck: boolean;
   router: Router;
 
+
   checkAdmin() {
     return getCookie("admin") == "true";
+  }
+  
+  //check if user owns organization
+  compareUser(org, user) {
+    let values = {
+      "_id": org._id,
+      "user": user
+    }
+
+    if (getCookie("token")) {
+      this.http.post<any>('http://localhost:3001/users/compareUser', values, { withCredentials: true }).subscribe(
+        result => {
+          if (result.message == "All good!") {
+            console.log(result);
+          }
+        }
+      )
+    } else {
+      return false;
+    }
   }
 
   checkLogin() {
