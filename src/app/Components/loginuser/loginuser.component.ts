@@ -30,39 +30,43 @@ export class LoginuserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //Initialize form
     this.loginForm = this.formBuilder.group({
       username: ["", Validators.required],
       password: ["", Validators.required]
     });
   }
 
-  // for accessing to form fields
+  // for accessing to form fields, with formBuilder you need to use this method to get the values
   get fval() {
     return this.loginForm.controls;
   }
 
+  //When login is submitted
   onFormSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     }
 
+    //Calls authentication servicve login and passes the username and password that was passed in
     this.loading = true;
     this.authenticationService
       .login(this.fval.username.value, this.fval.password.value)
       .subscribe(
         data => {
-          // check if user is admin
+          // check if user is admin reroute to admin page
           if (data.user.admin) {
-            // create cookie
+            // create cookie in browser using token from backend
             document.cookie = `token=${data.token}`;
             let cookies = document.cookie;
             console.log(cookies);
             this.router.navigate(["/admin"]);
             console.log("login succesful");
           } else {
+            //Here if user is not admin they are rerouted to profile page
             console.log(data);
-            // create cookie
+            // create cookie in browser using token from backend
             document.cookie = `token=${data.token}`;
             let cookies = document.cookie;
             console.log(cookies);

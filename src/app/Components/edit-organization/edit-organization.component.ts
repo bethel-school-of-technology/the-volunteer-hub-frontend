@@ -26,7 +26,6 @@ export class EditOrganizationComponent implements OnInit {
   user: User;
   currentUser;
   org: Organizations;
-  // tslint:disable-next-line: variable-name,
   id: number;
   valid: boolean;
 
@@ -38,17 +37,22 @@ export class EditOrganizationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //Create a variable that stores the id that is in the url
     const org = this.route.snapshot.paramMap.get("id");
 
+    //Get that specific organization
     this.http.get<Organizations>(`${this.orgUrl}/${org}`).subscribe(org => {
       this.org = org;
       console.log(org);
+      //This function checks to see who is currently logged in
       this.http.get<any>('http://localhost:3001/users/getUser', { withCredentials: true }).subscribe(user => {
         this.currentUser = user;
         this.canEdit(org, user);
       });
     });
 
+    //Create a new form using Formgroup and Formcontrol
+    //Validators are a built in FormControl function that have certain variables built in
     this.editOrgForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
       city: new FormControl("", [Validators.required]),
@@ -67,6 +71,7 @@ export class EditOrganizationComponent implements OnInit {
     });
   }
 
+  //This calls a backend service which edits the values of the organization
   editOrgUrl() {
     const result: Organizations = Object.assign({}, this.editOrgForm.value);
     return this.http.patch<any>(`${this.updateOrg}/${this.org._id}`, result, {
@@ -74,17 +79,24 @@ export class EditOrganizationComponent implements OnInit {
     });
   }
 
+  //Here when ngOnInit is called, this checks to see if the person logged in 'owns' the organization (created it), which if returned true would allow the user to edit it
+  //Whereas if it is false, then it will not allow you to edit and will not display that section of HTML
   canEdit(org, user) {
+    //Create a JSON object that has the id of the organization and the username of the person logged in
+    //Currently, organizations have a username value, which stores the name of the user that created it
     let username = user.user.username;
     let values = {
       "_id": org._id,
       "user": username
     }
+    //This calls a request which passes the the JSON object and current cookies that are stored in the browser
     this.http.post<any>('http://localhost:3001/users/compareUser', values, { withCredentials: true }).subscribe(
         result => {
+          //If the user logged in created the organization, then it displays the HTML and allows you to edit it
           if (result.message == "All good!") {
             console.log(result);
             this.valid = true;
+            //If the user logged in doesn't own the organization, or isn't logged in, then you will not be able to edit the HTML
           } else {
             this.valid = false;
           }
@@ -93,6 +105,7 @@ export class EditOrganizationComponent implements OnInit {
 
   }
 
+  //Function to edit the organization
   editOrg() {
     this.editOrgUrl().subscribe(
       updatedOrg => {
@@ -116,6 +129,7 @@ export class EditOrganizationComponent implements OnInit {
       .subscribe();
   }
 
+  //This allows the user to delete their organization, after they are rerouted to their profile page
   deleteOrganization() {
     this.deleteOganizationUrl().then(deleted => {
       alert("This organization has been deleted.");

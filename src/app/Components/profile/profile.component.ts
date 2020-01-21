@@ -25,18 +25,20 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     ) {
+    //Data is found before ngOnInit is ran
     route.data.subscribe(data => {
-      // tslint:disable-next-line: no-string-literal
       this.user = data['user'];
     });
   }
 
   ngOnInit() {
+    //Display all organizations that were created by the user, uses token
     this.http.get<Organizations[]>(this.url, { withCredentials: true }).subscribe(organization => {
       this.organization = organization;
       console.log(JSON.stringify(organization));
     });
 
+    //Initialize form
     this.orgForm = new FormGroup({
       name: new FormControl('', [
         Validators.required
@@ -65,16 +67,15 @@ export class ProfileComponent implements OnInit {
   }
 
   async orgUrl() {
+    //Create JSON object with form values then create new organization
     const result: Organizations = Object.assign({}, this.orgForm.value);
     return this.http.post<any>(this.createOrgUrl, result, { withCredentials: true }).subscribe();
   }
 
+  //Create new organization
   createOrg() {
     this.orgUrl().then(
       newOrg => {
-
-        // location.reload();
-
         console.log('Your new organization has been posted.', newOrg);
         alert('Your organization has been posted!');
         this.router.navigate(['/organizations']);

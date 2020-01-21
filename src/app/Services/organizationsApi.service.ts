@@ -14,10 +14,12 @@ export class OrganizationsApiService {
     //
   }
 
+  //Returns all organizations
   getOrganizations() {
     return this.http.get<Organizations[]>(this.getOrgsUrl);
   }
 
+  //Deletes organization by id
   deleteOrganization(id: string) {
     return this.http.delete<any>(`${this.deleteOrgUrl}/${id}`, {
       withCredentials: true

@@ -13,7 +13,8 @@ import { EditOrganizationComponent } from './Components/edit-organization/edit-o
 import { ApplicationComponent } from './Components/application/application.component';
 
 
-
+//resolve: data is found before ngonInit is ran on page
+//canActivate: Angular function which checks certain parameters before displaying the component, use 'ng generate Guard' to create, instead of regular 'ng generate service'
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'signup', component: SignUpComponentComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-
+//Exports all components in an array, so don't have to type each one specifically in app.module.ts
 export const routingComponents = [
   SignUpComponentComponent,
   HomepageComponent,

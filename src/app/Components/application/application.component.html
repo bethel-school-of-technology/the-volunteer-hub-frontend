@@ -1,8 +1,8 @@
-<p>application works!</p>
-
+<!-- The ? is called safe navigation operator, it makes sure a value is not null before displaying, without it, if data wasn't received quick enough it would throw errors in the console -->
 <h1>{{ org?.name }}</h1>
+<p>Description: {{ org?.description }}</p>
 
-
+<!-- Call apply function when submitted -->
 <form [formGroup]="myForm" (ngSubmit)="apply()">
     <mat-form-field>
         <input matInput placeholder="Your Name" formControlName="applicant" />

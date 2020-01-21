@@ -24,35 +24,36 @@ export class AdminComponent implements OnInit {
     private organizationsApi: OrganizationsApiService
   ) {}
 
+  //Call load functions on init
   ngOnInit() {
-    // this.http.get<Post[]>(this.dataPath).subscribe(posts => {
-    //   this.posts = posts;
-    // });
     this.loadOrganizations();
     this.loadUsers();
   }
 
+  //Load organizations from service
   loadOrganizations() {
     this.organizationsApi.getOrganizations().subscribe(organizations => {
       this.organizations = organizations;
     });
   }
 
+  //Load users from service
   loadUsers() {
     this.usersApi.getUsers().subscribe(users => {
       this.users = users;
     });
   }
 
+  //Call service to delete organization, then reload organizations displayed and display notification that organization has been deleted
   deleteOrganization(event: any) {
     this.organizationsApi.deleteOrganization(event).subscribe(deleted => {
       this.loadOrganizations();
 
       alert("This organization has been deleted." + " " + deleted.message);
-      // location.assign('http://localhost:4200/profile');
     });
   }
 
+  //Remove a user from the database, then reload users displayed and display notification that user has been deleted
   deleteUser(event: any) {
     this.usersApi.deleteUser(event).subscribe(deleted => {
       this.loadUsers();
@@ -62,7 +63,6 @@ export class AdminComponent implements OnInit {
           " " +
           deleted.message
       );
-      // location.assign('http://localhost:4200/profile');
     });
   }
 }
