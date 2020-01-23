@@ -6,6 +6,7 @@ import { map } from "rxjs/operators";
 import { User } from "../model/user";
 import { Router } from "@angular/router";
 
+//This function takes a cookie name then sorts through all cookies in browser and returns the one you want with string manipulation
 function getCookie(param: string) {
   var name = param + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -31,7 +32,7 @@ export class AuthenticationService {
   adminCheck: boolean;
   router: Router;
 
-
+  //Checks if logged in user has admin token
   checkAdmin() {
     return getCookie("admin") == "true";
   }
@@ -42,7 +43,8 @@ export class AuthenticationService {
       "_id": org._id,
       "user": user
     }
-
+    //Checks if token exists, which would mean they are logged in
+    //Then it calls a backend function which compares if user owns the organization in question
     if (getCookie("token")) {
       this.http.post<any>('http://localhost:3001/users/compareUser', values, { withCredentials: true }).subscribe(
         result => {
@@ -56,6 +58,7 @@ export class AuthenticationService {
     }
   }
 
+  //This checks if user is logged in, used in navbar
   checkLogin() {
     if (getCookie("token")) {
       return true;
@@ -65,16 +68,9 @@ export class AuthenticationService {
   }
 
   constructor(private http: HttpClient) {
-    // this.currentUserSubject = new BehaviorSubject<User>(
-    //   JSON.parse(localStorage.getItem('currentUser'))
-    // );
-    // this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  // public get currentUserValue(): User {
-  //   return this.currentUserSubject.value;
-  // }
-
+  //Login function
   login(username: string, password: string) {
     return this.http
       .post<any>(`http://localhost:3001/users/login`, { username, password })
@@ -85,22 +81,13 @@ export class AuthenticationService {
 
             this.adminCheck = data.user.admin;
 
-            // create cookies
+            //Create cookies in browser using tokens created in backend
             document.cookie = `token=${data.token}`;
             document.cookie = `admin=${data.user.admin}`;
 
-            // document.cookie = `token=${data.token};admin=${data.user.admin}`;
-            // document.cookie =
-            //   "cookie=" +
-            //   JSON.stringify({
-            //     token: data.token,
-            //     admin: data.user.admin
-            //   });
 
             console.log(document.cookie);
 
-            // console.log("Logged in:");
-            // this.checkAdmin();
 
             return data;
           }
@@ -108,12 +95,13 @@ export class AuthenticationService {
       );
   }
 
+  //Logout function, removes tokens from browser by expiring them
   logout() {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "admin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
+    //Sets values that navbar uses to false
     this.isAuthenticated = false;
     this.adminCheck = false;
-    console.log(document.cookie);
   }
 }

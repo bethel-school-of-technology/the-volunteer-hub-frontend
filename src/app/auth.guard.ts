@@ -13,9 +13,11 @@ export class AuthGuard implements CanActivate {
   
   constructor(private auth: AuthenticationService, private router: Router, private http: HttpClient){}
 
+  //canActivate of built in angular Guard 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      //Checks if user is admin returns true, and opposite if not
       if (this.auth.checkAdmin()) {
         console.log('true');
         return true;

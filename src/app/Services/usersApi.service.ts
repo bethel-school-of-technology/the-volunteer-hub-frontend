@@ -10,13 +10,14 @@ export class UsersApiService {
   private deleteUserUrl = "http://localhost:3001/users/admin/deleteUser";
 
   constructor(private http: HttpClient) {
-    //
   }
 
+  //Returns all users
   getUsers() {
     return this.http.get<User[]>(this.getUserUrl);
   }
 
+  //Deletes a user
   deleteUser(id: string) {
     return this.http.delete<any>(`${this.deleteUserUrl}/${id}`, {
       withCredentials: true

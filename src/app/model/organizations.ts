@@ -1,5 +1,4 @@
 export class Organizations {
-    // tslint:disable-next-line: variable-name
     _id: number;
     username: string;
     name: string;

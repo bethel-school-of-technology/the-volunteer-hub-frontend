@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class ResolverService implements Resolve<User> {
 
   constructor(private http: HttpClient) { }
+  //Resolve is used by angular to load data before ngoninit is ran
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
     return this.http.get<User>('http://localhost:3001/users/userProfile', { withCredentials: true });

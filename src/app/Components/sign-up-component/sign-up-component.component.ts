@@ -18,6 +18,7 @@ export class SignUpComponentComponent implements OnInit {
   constructor(private http: HttpClient, private _signUpService: SignupService, private router: Router) { }
 
   ngOnInit() {
+    //Initialize form
     this.myForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
@@ -36,10 +37,12 @@ export class SignUpComponentComponent implements OnInit {
   }
 
   async routeURL() {
+    //Create JSON object with form values then pass that to the signup in backend
     const result: User = Object.assign({}, this.myForm.value);
     return this._signUpService.signup(result).subscribe();
   }
 
+  //If signed up successfully, will reroute you to login
   signup() {
     this.routeURL().then(
       data => {
