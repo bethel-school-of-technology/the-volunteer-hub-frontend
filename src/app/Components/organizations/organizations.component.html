@@ -1,11 +1,5 @@
-
-<!-- <div>
-    <ul *ngFor='let organization of organization'>
-        <li><a routerLink='#'>{{organization.name}}</a></li>
-    </ul> -->
-
-<div class="container">
-    <h1>Organizations</h1>
+<div class="container" id="orgtitle">
+    <h1><u>Volunteer Organizations</u></h1>
 
     <form class="search bg-info" [formGroup]="searchForm" (ngSubmit)="search()">
         <p>Search by State for Organizations near you!</p>
@@ -19,7 +13,7 @@
         </div>
     </form>
 
-    <ul class='liContainer'>
+    <ul class='liContainer' id="searchbar">
         <li *ngFor='let organ of organ' class='li_item' (click)='reRoute(organ)'>
             <div class='_res'>{{ organ.name }}, {{ organ.city }}</div>
         </li>
@@ -27,6 +21,8 @@
 
     <div class="row">
         <div class="col-sm-12">
+            <h5>You can find a list of all registered volunteer organizations below. <br>
+                Click on the organization's name for volunteer information or to contact them.</h5>
             <ul *ngFor='let organization of organization'>
                 <ul><a [routerLink]="['/apply', organization._id]">{{ organization.name }}</a></ul>
                 <ul>{{organization.city}}, {{organization.state}}</ul>

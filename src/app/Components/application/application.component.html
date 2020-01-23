@@ -1,8 +1,9 @@
-<p>application works!</p>
+<h3><u>{{ org?.name }}</u></h3>
+<p>{{ org?.city }}, {{ org?.state }}</p>
+<p> Current volunteer opportunities:</p>
+<p>{{ org?.description }}</p><br>
 
-<h1>{{ org?.name }}</h1>
-
-
+<p>Complete the form below to contact the organization:</p>
 <form [formGroup]="myForm" (ngSubmit)="apply()">
     <mat-form-field>
         <input matInput placeholder="Your Name" formControlName="applicant" />

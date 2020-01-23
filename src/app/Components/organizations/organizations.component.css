@@ -1,0 +1,22 @@
+#orgtitle {
+    text-align: center;
+    padding: 1em;
+}
+
+p {
+    font-style: underlined;
+}
+
+.container {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    border-radius: 5px;
+    overflow-x: hidden;
+}
+
+h5 {
+    padding-top: 5em;
+}

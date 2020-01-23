@@ -1,28 +1,31 @@
 /* Add a black background color to the top navigation */
 header {
-    vertical-align: middle;
-    width: 100%;
-    height: 13vh;
-    display: flex;
-    
+  vertical-align: middle;
+  width: 100%;
+  height: 13.4vh;
+  display: flex;
+
 }
+
 .topnav {
-    overflow: hidden;
-    padding-top: 3vh;
-  }
-  
-  /* Style the links inside the navigation bar */
-  .topnav a {
-     float: right;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 1em;
-    text-decoration: none;
-    font-size: 1 em;
-    height: 13vh
-  }
-
-  .logoImage {
-  height: 13vh;
+  overflow: hidden;
+  padding-top: 3vh;
 }
 
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding-top: 1.1em;
+  padding-left: 1.0em;
+  padding-right: 1.0em;
+  text-decoration: none;
+  font-size: 1.5 em;
+  font-weight: bolder;
+  height: 13.4vh
+}
+
+.logoImage {
+  height: 13.4vh;
+}
