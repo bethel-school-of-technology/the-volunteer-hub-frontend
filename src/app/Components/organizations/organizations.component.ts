@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Organizations } from '../../model/organizations';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Organizations } from "../../model/organizations";
+import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 
 
 @Component({
-  selector: 'app-organizations',
-  templateUrl: './organizations.component.html',
-  styleUrls: ['./organizations.component.css']
+  selector: "app-organizations",
+  templateUrl: "./organizations.component.html",
+  styleUrls: ["./organizations.component.css"]
 })
 export class OrganizationsComponent implements OnInit {
   organization: Organizations[];
   organ: Organizations;
-  _url: string = 'http://localhost:3001/getOrgs';
-  _url_specific: string = 'http://localhost:3001/getOrgs/';
+  _url: string = "http://localhost:3001/getOrgs";
+  _url_specific: string = "http://localhost:3001/getOrgs/";
   searchForm: FormGroup;
 
   constructor(private _http: HttpClient, private fb: FormBuilder, private router: Router) { }
@@ -22,7 +22,7 @@ export class OrganizationsComponent implements OnInit {
   ngOnInit() {
     //Create search form with formbuilder
     this.searchForm = this.fb.group({
-      state: ['']
+      state: [""]
     })
 
     //Display list of organizations
@@ -41,7 +41,7 @@ export class OrganizationsComponent implements OnInit {
   reRoute(org) {
     var orgId = org._id;
     console.log(orgId);
-    this.router.navigate(['/apply', orgId]);
+    this.router.navigate(["/apply", orgId]);
   }
 
     //Search function

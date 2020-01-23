@@ -11,7 +11,7 @@
     </div>
 
     <div>
-        <ul *ngFor='let organization of organization'>
+        <ul *ngFor="let organization of organization">
             <li>
                 <h5><a [routerLink]="['/organization', organization._id]">Outreach Name: {{organization.name}}</a></h5>
                 Location: {{organization.city}}, {{organization.state}}.<br>

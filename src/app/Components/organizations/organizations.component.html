@@ -1,29 +1,29 @@
 <div class="container">
-    <h1>Organizations</h1>
+    <h1><u>Organizations</u></h1>
 
     <form class="search bg-info" [formGroup]="searchForm" (ngSubmit)="search()">
         <p>Search by State for Organizations near you!</p>
-        <div class='s_but'>
+        <div class="s_but">
             <mat-form-field>
                 <input matInput placeholder="Search by State!" formControlName="state" />
             </mat-form-field>
-            <button mat-raised-button class='btn btn-outline-secondary' [disabled]="searchForm.invalid" type="submit">
+            <button mat-raised-button class="btn btn-outline-secondary" [disabled]="searchForm.invalid" type="submit">
                 Search
             </button>
         </div>
     </form>
 
-    <ul class='liContainer' id="searchbar">
-        <li *ngFor='let organ of organ' class='li_item' (click)='reRoute(organ)'>
-            <div class='_res'>{{ organ.name }}, {{ organ.city }}</div>
+    <ul class="liContainer" id="searchbar">
+        <li *ngFor="let organ of organ" class="li_item" (click)="reRoute(organ)">
+            <div class="_res">{{ organ.name }}, {{ organ.city }}</div>
         </li>
     </ul>
 
     <div class="row">
         <div class="col-sm-12">
-            <h5>You can find a list of all registered volunteer organizations below. <br>
-                Click on the organization's name for volunteer information or to contact them.</h5>
-            <ul *ngFor='let organization of organization'>
+            <h5>You can find a list of all registered volunteer organizations below. </h5><br>
+            <h5>Click on the organization's name for volunteer information or to contact them.</h5>
+            <ul *ngFor="let organization of organization">
                 <ul><a [routerLink]="['/apply', organization._id]">{{ organization.name }}</a></ul>
                 <ul>{{organization.city}}, {{organization.state}}</ul>
             </ul>

@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Post } from '../../model/post';
+import { Component, OnInit, Input } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Post } from "../../model/post";
 
 @Component({
-  selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  selector: "app-posts",
+  templateUrl: "./posts.component.html",
+  styleUrls: ["./posts.component.css"]
 })
 export class PostsComponent implements OnInit {
   posts: Post[];

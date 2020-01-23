@@ -3,38 +3,39 @@
         <div class="form-group">
             <hr>
             <mat-form-field>
-                <input matInput placeholder='email' formControlName='email' class="form-control text-primary"/>
-    
-                <mat-error *ngIf='myForm.controls.email.invalid && myForm.controls.email.touched'>
+                <input matInput placeholder="email" formControlName="email" class="form-control text-primary" />
+
+                <mat-error *ngIf="myForm.controls.email.invalid && myForm.controls.email.touched">
                     Invalid email!
                 </mat-error>
-    
+
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput placeholder='username' formControlName='username' class="form-control text-primary"/>
-                <mat-hint align='end'>Must be between 5-10 characters</mat-hint>
-    
-                <mat-error *ngIf='myForm.controls.username.invalid && myForm.controls.username.touched'>
+                <input matInput placeholder="username" formControlName="username" class="form-control text-primary" />
+                <mat-hint align="end">Must be between 5-10 characters</mat-hint>
+
+                <mat-error *ngIf="myForm.controls.username.invalid && myForm.controls.username.touched">
                     Invalid username!
                 </mat-error>
             </mat-form-field>
             <br>
             <mat-form-field>
-                <input matInput type='password' placeholder='password' formControlName='password' class="form-control text-primary"/>
-    
-                <mat-hint align='end'>Must contain one letter, and one number</mat-hint>
-    
-                <mat-error *ngIf='myForm.controls.password.invalid && myForm.controls.password.touched'>
+                <input matInput type="password" placeholder="password" formControlName="password"
+                    class="form-control text-primary" />
+
+                <mat-hint align="end">Must contain one letter, and one number</mat-hint>
+
+                <mat-error *ngIf="myForm.controls.password.invalid && myForm.controls.password.touched">
                     Invalid password!
                 </mat-error>
-    
-            </mat-form-field>      
+
+            </mat-form-field>
         </div>
-        <button mat-raised-button [disabled]='myForm.invalid' type="submit" class="btn btn-outline-primary">
+        <button mat-raised-button [disabled]="myForm.invalid" type="submit" class="btn btn-outline-primary">
             Submit
         </button>
-    
-    
+
+
     </form>
 </div>

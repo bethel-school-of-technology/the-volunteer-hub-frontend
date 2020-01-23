@@ -36,23 +36,25 @@ export class AuthenticationService {
   checkAdmin() {
     return getCookie("admin") == "true";
   }
-  
+
   //check if user owns organization
   compareUser(org, user) {
     let values = {
-      "_id": org._id,
-      "user": user
-    }
+      _id: org._id,
+      user: user
+    };
     //Checks if token exists, which would mean they are logged in
     //Then it calls a backend function which compares if user owns the organization in question
     if (getCookie("token")) {
-      this.http.post<any>('http://localhost:3001/users/compareUser', values, { withCredentials: true }).subscribe(
-        result => {
+      this.http
+        .post<any>("http://localhost:3001/users/compareUser", values, {
+          withCredentials: true
+        })
+        .subscribe(result => {
           if (result.message == "All good!") {
             console.log(result);
           }
-        }
-      )
+        });
     } else {
       return false;
     }
@@ -67,8 +69,7 @@ export class AuthenticationService {
     }
   }
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   //Login function
   login(username: string, password: string) {
@@ -85,9 +86,7 @@ export class AuthenticationService {
             document.cookie = `token=${data.token}`;
             document.cookie = `admin=${data.user.admin}`;
 
-
             console.log(document.cookie);
-
 
             return data;
           }

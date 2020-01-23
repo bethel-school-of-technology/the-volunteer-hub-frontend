@@ -45,10 +45,14 @@ export class EditOrganizationComponent implements OnInit {
       this.org = org;
       console.log(org);
       //This function checks to see who is currently logged in
-      this.http.get<any>('http://localhost:3001/users/getUser', { withCredentials: true }).subscribe(user => {
-        this.currentUser = user;
-        this.canEdit(org, user);
-      });
+      this.http
+        .get<any>("http://localhost:3001/users/getUser", {
+          withCredentials: true
+        })
+        .subscribe(user => {
+          this.currentUser = user;
+          this.canEdit(org, user);
+        });
     });
 
     //Create a new form using Formgroup and Formcontrol
@@ -86,23 +90,24 @@ export class EditOrganizationComponent implements OnInit {
     //Currently, organizations have a username value, which stores the name of the user that created it
     let username = user.user.username;
     let values = {
-      "_id": org._id,
-      "user": username
-    }
+      _id: org._id,
+      user: username
+    };
     //This calls a request which passes the the JSON object and current cookies that are stored in the browser
-    this.http.post<any>('http://localhost:3001/users/compareUser', values, { withCredentials: true }).subscribe(
-        result => {
-          //If the user logged in created the organization, then it displays the HTML and allows you to edit it
-          if (result.message == "All good!") {
-            console.log(result);
-            this.valid = true;
-            //If the user logged in doesn't own the organization, or isn't logged in, then you will not be able to edit the HTML
-          } else {
-            this.valid = false;
-          }
+    this.http
+      .post<any>("http://localhost:3001/users/compareUser", values, {
+        withCredentials: true
+      })
+      .subscribe(result => {
+        //If the user logged in created the organization, then it displays the HTML and allows you to edit it
+        if (result.message == "All good!") {
+          console.log(result);
+          this.valid = true;
+          //If the user logged in doesn't own the organization, or isn't logged in, then you will not be able to edit the HTML
+        } else {
+          this.valid = false;
         }
-      )
-
+      });
   }
 
   //Function to edit the organization
