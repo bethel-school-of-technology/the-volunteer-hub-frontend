@@ -6,6 +6,7 @@ import { User } from "../../model/user";
 import { OrganizationsApiService } from "../../Services/organizationsApi.service";
 import { UsersApiService } from "../../Services/usersApi.service";
 
+
 @Component({
   selector: "app-admin",
   templateUrl: "./admin.component.html",

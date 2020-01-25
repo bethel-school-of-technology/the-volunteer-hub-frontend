@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { AuthenticationService } from "../../Services/authentication.service";
 import { LoginService } from "../../Services/login.service";
 import { Input } from "@angular/core";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: "app-loginuser",
@@ -18,7 +19,7 @@ export class LoginuserComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   user: User;
-  private adminUrl = "http://localhost:3001/users/admin";
+  private adminUrl = environment.VOLUNTEER_HUB_API + "/users/admin";
 
   constructor(
     private formBuilder: FormBuilder,

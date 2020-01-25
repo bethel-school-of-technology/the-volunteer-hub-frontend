@@ -8,6 +8,7 @@ import {
 import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Organizations } from "../../model/organizations";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: "app-homepage",
@@ -17,7 +18,7 @@ import { Organizations } from "../../model/organizations";
 export class HomepageComponent implements OnInit {
   searchForm: FormGroup;
   organization: Organizations;
-  _url: string = "http://localhost:3001/getOrgs/";
+  _url: string = environment.VOLUNTEER_HUB_API + "/getOrgs/";
 
   constructor(
     private http: HttpClient,

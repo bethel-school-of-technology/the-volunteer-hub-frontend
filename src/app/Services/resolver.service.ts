@@ -8,6 +8,7 @@ import { Observable } from "rxjs";
 import { User } from "../model/user";
 import { Organizations } from "../model/organizations";
 import { HttpClient } from "@angular/common/http";
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: "root"
@@ -20,7 +21,7 @@ export class ResolverService implements Resolve<User> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<User> {
-    return this.http.get<User>("http://localhost:3001/users/userProfile", {
+    return this.http.get<User>(environment.VOLUNTEER_HUB_API + "/users/userProfile", {
       withCredentials: true
     });
   }
@@ -30,7 +31,7 @@ export class ResolverService implements Resolve<User> {
     state: RouterStateSnapshot
   ): Observable<Organizations> {
     return this.http.post<Organizations>(
-      "http://localhost:3001/users/createOrg",
+      environment.VOLUNTEER_HUB_API + "/users/createOrg",
       { withCredentials: true }
     );
   }

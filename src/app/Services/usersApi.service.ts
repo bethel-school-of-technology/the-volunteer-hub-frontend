@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User } from "../model/user";
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: "root"
 })
 export class UsersApiService {
-  private getUserUrl = "http://localhost:3001/getUsers";
-  private deleteUserUrl = "http://localhost:3001/users/admin/deleteUser";
+  private getUserUrl = environment.VOLUNTEER_HUB_API + "/getUsers";
+  private deleteUserUrl = environment.VOLUNTEER_HUB_API + "/users/admin/deleteUser";
 
   constructor(private http: HttpClient) {
   }

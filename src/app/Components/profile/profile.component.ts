@@ -9,6 +9,7 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: "app-profile",
@@ -20,8 +21,8 @@ export class ProfileComponent implements OnInit {
   user: User;
   org: Organizations;
   organization: Organizations[];
-  private url = "http://localhost:3001/users/userOrgs";
-  private createOrgUrl = "http://localhost:3001/users/createOrg";
+  private url = environment.VOLUNTEER_HUB_API + "/users/userOrgs";
+  private createOrgUrl = environment.VOLUNTEER_HUB_API + "/users/createOrg";
 
   constructor(
     private http: HttpClient,

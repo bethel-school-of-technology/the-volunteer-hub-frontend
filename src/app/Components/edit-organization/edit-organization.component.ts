@@ -11,6 +11,7 @@ import {
 } from "@angular/forms";
 import { FormsModule } from "@angular/forms";
 import { AuthenticationService } from "../../Services/authentication.service";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: "app-edit-organization",
@@ -20,9 +21,9 @@ import { AuthenticationService } from "../../Services/authentication.service";
 export class EditOrganizationComponent implements OnInit {
   url: string;
   editOrgForm: FormGroup;
-  updateOrg = "http://localhost:3001/users/updateOrg";
-  orgUrl = "http://localhost:3001/getOrgById";
-  deleteOrg = "http://localhost:3001/users/deleteOrg";
+  updateOrg = environment.VOLUNTEER_HUB_API + "/users/updateOrg";
+  orgUrl = environment.VOLUNTEER_HUB_API + "/getOrgById";
+  deleteOrg = environment.VOLUNTEER_HUB_API + "/users/deleteOrg";
   user: User;
   currentUser;
   org: Organizations;
@@ -46,7 +47,7 @@ export class EditOrganizationComponent implements OnInit {
       console.log(org);
       //This function checks to see who is currently logged in
       this.http
-        .get<any>("http://localhost:3001/users/getUser", {
+        .get<any>(environment.VOLUNTEER_HUB_API + "/users/getUser", {
           withCredentials: true
         })
         .subscribe(user => {
@@ -95,7 +96,7 @@ export class EditOrganizationComponent implements OnInit {
     };
     //This calls a request which passes the the JSON object and current cookies that are stored in the browser
     this.http
-      .post<any>("http://localhost:3001/users/compareUser", values, {
+      .post<any>(environment.VOLUNTEER_HUB_API + "/users/compareUser", values, {
         withCredentials: true
       })
       .subscribe(result => {

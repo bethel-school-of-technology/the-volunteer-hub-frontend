@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Organizations } from "../../model/organizations";
 import { FormBuilder, FormGroup, Validators, FormControl } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -13,8 +14,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class OrganizationsComponent implements OnInit {
   organization: Organizations[];
   organ: Organizations;
-  _url: string = "http://localhost:3001/getOrgs";
-  _url_specific: string = "http://localhost:3001/getOrgs/";
+  _url: string = environment.VOLUNTEER_HUB_API + "/getOrgs";
+  _url_specific: string = environment.VOLUNTEER_HUB_API + "/getOrgs/";
   searchForm: FormGroup;
 
   constructor(private _http: HttpClient, private fb: FormBuilder, private router: Router) { }

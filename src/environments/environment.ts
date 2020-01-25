@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  VOLUNTEER_HUB_API: 'https://the-volunteer-hub-backend.herokuapp.com'
 };
 
 /*

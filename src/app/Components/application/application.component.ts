@@ -8,6 +8,7 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: "app-application",
@@ -15,8 +16,8 @@ import {
   styleUrls: ["./application.component.css"]
 })
 export class ApplicationComponent implements OnInit {
-  url = "http://localhost:3001/getOrgById";
-  emailURL = "http://localhost:3001/sendMail";
+  url = environment.VOLUNTEER_HUB_API + "/getOrgById";
+  emailURL = environment.VOLUNTEER_HUB_API + "/sendMail";
   org: Organizations;
   myForm: FormGroup;
 
