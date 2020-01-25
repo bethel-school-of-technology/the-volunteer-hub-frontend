@@ -23,6 +23,11 @@ header img {
   text-decoration: none;
   font-size: 17px;
 }
+ 
+/* Added a hover affect on the navbar tabs */
+.topnav a:hover{
+  color: black;
+}
 
 
 /* Hide the link that should open and close the topnav on small screens */
