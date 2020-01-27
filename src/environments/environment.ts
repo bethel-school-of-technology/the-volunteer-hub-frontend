@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  VOLUNTEER_HUB_API: 'https://the-volunteer-hub-backend.herokuapp.com'
+  VOLUNTEER_HUB_API: "http://api.volunteerhubusa.com"
 };
 
 /*

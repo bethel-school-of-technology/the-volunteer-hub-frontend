@@ -2,10 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { environment } from '../../environments/environment';
+import { environment } from "../../environments/environment";
 import { User } from "../model/user";
 import { Router } from "@angular/router";
-
 
 //This function takes a cookie name then sorts through all cookies in browser and returns the one you want with string manipulation
 function getCookie(param: string) {
@@ -48,9 +47,13 @@ export class AuthenticationService {
     //Then it calls a backend function which compares if user owns the organization in question
     if (getCookie("token")) {
       this.http
-        .post<any>(environment.VOLUNTEER_HUB_API + "/users/compareUser", values, {
-          withCredentials: true
-        })
+        .post<any>(
+          environment.VOLUNTEER_HUB_API + "/users/compareUser",
+          values,
+          {
+            withCredentials: true
+          }
+        )
         .subscribe(result => {
           if (result.message == "All good!") {
             console.log(result);
@@ -75,7 +78,10 @@ export class AuthenticationService {
   //Login function
   login(username: string, password: string) {
     return this.http
-      .post<any>(environment.VOLUNTEER_HUB_API + '/users/login', { username, password })
+      .post<any>(environment.VOLUNTEER_HUB_API + "/users/login", {
+        username,
+        password
+      })
       .pipe(
         map(data => {
           if (data && data.token) {
@@ -84,8 +90,8 @@ export class AuthenticationService {
             this.adminCheck = data.user.admin;
 
             //Create cookies in browser using tokens created in backend
-            document.cookie = `token=${data.token}`;
-            document.cookie = `admin=${data.user.admin}`;
+            document.cookie = `token=${data.token};domain=.volunteerhubusa.com;path=/;`;
+            document.cookie = `admin=${data.user.admin};domain=.volunteerhubusa.com;path=/;`;
 
             console.log(document.cookie);
 
@@ -97,8 +103,10 @@ export class AuthenticationService {
 
   //Logout function, removes tokens from browser by expiring them
   logout() {
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    document.cookie = "admin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie =
+      "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.volunteerhubusa.com; path=/;";
+    document.cookie =
+      "admin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=.volunteerhubusa.com; path=/;";
 
     //Sets values that navbar uses to false
     this.isAuthenticated = false;

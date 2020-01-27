@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { AuthenticationService } from "../../Services/authentication.service";
 import { LoginService } from "../../Services/login.service";
 import { Input } from "@angular/core";
-import { environment } from '../../../environments/environment';
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: "app-loginuser",
@@ -59,7 +59,7 @@ export class LoginuserComponent implements OnInit {
           // check if user is admin reroute to admin page
           if (data.user.admin) {
             // create cookie in browser using token from backend
-            document.cookie = `token=${data.token}`;
+            document.cookie = `token=${data.token};domain=.volunteerhubusa.com;path=/;`;
             let cookies = document.cookie;
             console.log(cookies);
             this.router.navigate(["/admin"]);
@@ -68,7 +68,7 @@ export class LoginuserComponent implements OnInit {
             //Here if user is not admin they are rerouted to profile page
             console.log(data);
             // create cookie in browser using token from backend
-            document.cookie = `token=${data.token}`;
+            document.cookie = `token=${data.token};domain=.volunteerhubusa.com;path=/;`;
             let cookies = document.cookie;
             console.log(cookies);
             this.router.navigate(["/profile"]);
