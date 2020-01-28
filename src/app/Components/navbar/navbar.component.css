@@ -24,6 +24,10 @@ header img {
   font-size: 17px;
 }
 
+.topnav a:hover {
+  color: black;
+}
+
 
 /* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
