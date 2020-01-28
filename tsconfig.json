@@ -24,4 +24,5 @@
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
     "importHelpers": true
-  }
+  },
+}

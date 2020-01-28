@@ -1,0 +1,70 @@
+<div class="container">
+    <div>
+        <h1>{{ org?.name }}</h1>
+        <p>Location: {{ org?.city }}, {{ org?.state }}</p>
+        <p>Contact Info:</p>
+        <p>Email: {{ org?.email }}</p>
+        <p>Phone Number: {{ org?.phoneNumber }}</p>
+        <b>Volunteer Opportunities:</b><br>
+        <p>{{ org?.description }}</p>
+    </div>
+
+    <div *ngIf="valid">
+        <button class="btn-danger" (click)="deleteOrganization()">DELETE</button>
+        <hr>
+        <h2>Edit Organization</h2>
+        <p class="--red">All fields required!</p>
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="editOrgForm" (ngSubmit)="editOrg()">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input matInput placeholder="Organization Name" formControlName="name">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input matInput placeholder="City" formControlName="city">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input matInput placeholder="State" formControlName="state">
+                            <mat-error *ngIf="editOrgForm.controls.state.invalid && editOrgForm.controls.state.touched">
+                                Must be a valid state.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input matInput placeholder="Email" formControlName="email">
+                            <mat-error *ngIf="editOrgForm.controls.email.invalid && editOrgForm.controls.email.touched">
+                                Must be a valid email address.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input matInput placeholder="Phone Number" formControlName="phoneNumber">
+                            <mat-hint MatHint.align="end">Numbers Only</mat-hint>
+                            <mat-error
+                                *ngIf="editOrgForm.controls.phoneNumber.invalid && editOrgForm.controls.phoneNumber.touched">
+                                Must be a valid phone number.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field hintLabel="Describe your organization's volunteer opportunities">
+                            <textarea cdkTextareaAutosize matInput placeholder="Volunteer Opportunities"
+                                formControlName="description"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <button mat-raised-button [disabled]="editOrgForm.invalid" type="submit"
+                        class="btn btn-outline-primary">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

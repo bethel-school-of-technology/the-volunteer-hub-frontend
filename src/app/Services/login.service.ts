@@ -8,8 +8,8 @@ import { User } from "../model/user";
 export class LoginService {
   _url = "http://localhost:3001/users/login";
 
-  constructor(private _http: HttpClient) {}
+  constructor(private http: HttpClient) {}
   login(user: User) {
-    return this._http.post<any>(this._url, user);
+    return this.http.post<any>(this._url, user);
   }
 }

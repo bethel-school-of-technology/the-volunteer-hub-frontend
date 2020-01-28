@@ -17,6 +17,8 @@ export class LoginuserComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  user: User;
+  private adminUrl = "http://localhost:3001/users/admin";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,34 +30,53 @@ export class LoginuserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    //Initialize form
     this.loginForm = this.formBuilder.group({
       username: ["", Validators.required],
       password: ["", Validators.required]
     });
   }
 
-  // for accessing to form fields
+  // for accessing to form fields, with formBuilder you need to use this method to get the values
   get fval() {
     return this.loginForm.controls;
   }
 
+  //When login is submitted
   onFormSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     }
 
+    //Calls authentication servicve login and passes the username and password that was passed in
     this.loading = true;
     this.authenticationService
       .login(this.fval.username.value, this.fval.password.value)
       .subscribe(
         data => {
-          this.router.navigate(["/"]);
-          console.log("login successful");
+          // check if user is admin reroute to admin page
+          if (data.user.admin) {
+            // create cookie in browser using token from backend
+            document.cookie = `token=${data.token}`;
+            let cookies = document.cookie;
+            console.log(cookies);
+            this.router.navigate(["/admin"]);
+            console.log("login succesful");
+          } else {
+            //Here if user is not admin they are rerouted to profile page
+            console.log(data);
+            // create cookie in browser using token from backend
+            document.cookie = `token=${data.token}`;
+            let cookies = document.cookie;
+            console.log(cookies);
+            this.router.navigate(["/profile"]);
+            console.log("login successful");
+          }
         },
         error => {
-          alert("Error");
-          console.log(this.fval.username.value);
+          alert("Username or password does not exist.");
+          console.log(this.fval.username.value, error);
           this.loading = false;
         }
       );

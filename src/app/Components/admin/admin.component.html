@@ -1,0 +1,35 @@
+<h1><u>Admin Portal</u></h1>
+<table>
+    <thead>
+        <th>Outreach Organization Name</th>
+    </thead>
+    <tbody>
+        <tr *ngIf="!organizations">
+            <td>
+                There are no organizations.
+            </td>
+        </tr>
+        <tr *ngFor="let organizations of organizations">
+            <td>{{ organizations?.name }}</td>
+            <button class="btn-warning" (click)="deleteOrganization(organizations._id)">Delete This
+                Organization</button>
+        </tr>
+    </tbody>
+</table>
+<table>
+    <thead>
+        <th>Outreach Oganization Representatives</th>
+    </thead>
+    <tbody>
+        <tr *ngIf="!users">
+            <td>
+                There are no registered representatives.
+            </td>
+        </tr>
+        <tr *ngFor="let users of users">
+            <td>{{ users?.username }}</td>
+            <button class="btn-warning" (click)="deleteUser(users._id)">Delete This
+                Representative</button>
+        </tr>
+    </tbody>
+</table>

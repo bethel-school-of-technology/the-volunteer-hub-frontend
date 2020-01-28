@@ -1,0 +1,17 @@
+<!-- The ? is called safe navigation operator, it makes sure a value is not null before displaying, without it, if data wasn't received quick enough it would throw errors in the console -->
+<h3><u>{{ org?.name }}</u></h3>
+<p>{{ org?.city }}, {{ org?.state }}</p>
+<p> Current volunteer opportunities:</p>
+<p>{{ org?.description }}</p><br>
+
+<p>Complete the form below to contact the organization:</p>
+<!-- Call apply function when submitted -->
+<form [formGroup]="myForm" (ngSubmit)="apply()">
+    <mat-form-field>
+        <input matInput placeholder="Your Name" formControlName="applicant" />
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Phone Number" formControlName="contact" />
+    </mat-form-field>
+    <button mat-raised-button class="btn btn-outline-secondary" [disabled]="myForm.invalid" type="submit">Apply</button>
+</form>
