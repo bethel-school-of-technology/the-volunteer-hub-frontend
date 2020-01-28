@@ -25,3 +25,42 @@ ul {
 h5 {
     padding-bottom: 0em;
 }
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 85%;
+    }
+    .introBody{
+        margin-bottom: 50px;
+    }
+    .slogan {
+        font-size: 3em;
+    }
+    .search {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        width: 85%;
+    }
+    .slogan {
+        font-size: 1.5em;
+    }
+    .introBody {
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: auto;
+        margin-bottom: 40px;
+    }
+    .search {
+        width: 100%;
+    }
+    .search p {
+        font-size: 12px;
+    }
+
+}
